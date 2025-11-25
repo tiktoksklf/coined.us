@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Coinexa VisionAI — Chart Analyzer</title>
+
+<style>
+  body {
+    background: #05070e;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #e5e7eb;
+  }
+
+  .container {
+    max-width: 650px;
+    margin: 40px auto;
+    background: #0b1120;
+    border: 1px solid #1f2937;
+    padding: 25px;
+    border-radius: 16px;
+  }
+
+  h1 {
+    margin-top: 0;
+    text-align: center;
+    color: #f5b947;
+  }
+
+  input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background: #111827;
+    border: 1px solid #374151;
+    color: white;
+    margin-top: 14px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 999px;
+    background: #f5b947;
+    border: none;
+    color: #111;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+
+  #resultBox {
+    margin-top: 25px;
+    background: #111827;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #1f2937;
+    white-space: pre-wrap;
+    font-size: 0.9rem;
+  }
+
+  #loading {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #f5b947;
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <h1>Coinexa VisionAI</h1>
+  <p style="text-align:center; color:#9ca3af;">
+    Upload your trading chart and let VisionAI analyze trend, structure, BOS/CHoCH, liquidity, and potential entries.
+  </p>
+
+  <input type="file" id="chartInput" accept="image/*">
+  <button onclick="analyzeChart()">Analyze Chart</button>
+
+  <div id="loading">🔍 Analyzing chart… Please wait.</div>
+
+  <div id="resultBox">Your analysis will appear here.</div>
+
+</div>
+
+<script>
+  const API_URL = "https://coinexa-backend.onrender.com/analyze";
+
+  async function analyzeChart() {
+    const chartFile = document.getElementById("chartInput").files[0];
+
+    if (!chartFile) {
+      alert("Please upload a chart image first.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("chart", chartFile);
+
+    document.getElementById("loading").style.display = "block";
+    document.getElementById("resultBox").textContent = "";
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      document.getElementById("loading").style.display = "none";
+
+      if (data.error) {
+        document.getElementById("resultBox").textContent =
+          "Error: " + data.error;
+      } else {
+        document.getElementById("resultBox").textContent = data.analysis;
+      }
+
+    } catch (err) {
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("resultBox").textContent =
+        "Could not reach VisionAI backend.";
+    }
+  }
+</script>
+
+</body>
+</html>
