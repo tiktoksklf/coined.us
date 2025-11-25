@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Coinexa VisionAI — Chart Analyzer</title>
+<title>Coinexa VisionAI — Secure Access</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -34,20 +34,16 @@
     font-size: 1.8rem;
   }
 
-  p {
-    text-align: center;
-    font-size: .9rem;
-    color: #9ca3af;
-    margin-bottom: 20px;
-  }
+  .hidden { display: none; }
 
-  input[type="file"] {
+  input {
     width: 100%;
-    padding: 14px;
-    border-radius: 12px;
-    background: #111827;
+    padding: 12px;
+    border-radius: 10px;
     border: 1px solid #374151;
+    background: #111827;
     color: #fff;
+    margin-top: 12px;
   }
 
   button {
@@ -64,6 +60,16 @@
     box-shadow: 0 0 15px rgba(245,185,71,0.4);
   }
 
+  #resultBox {
+    margin-top: 25px;
+    background: #111827;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #1f2937;
+    font-size: .9rem;
+    white-space: normal;
+  }
+
   #loading {
     display: none;
     text-align: center;
@@ -71,97 +77,162 @@
     color: #f5b947;
     font-size: 1rem;
   }
-
-  #resultBox {
-    margin-top: 25px;
-    background: #111827;
-    padding: 16px;
-    border-radius: 12px;
-    border: 1px solid #1f2937;
-    font-size: .9rem;
-    white-space: pre-wrap;
-  }
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
-  <h1>VisionAI Analyzer</h1>
-  <p>Upload a trading chart to generate a full AI-style breakdown.</p>
+  <!-- LOGIN -->
+  <div id="loginPanel">
+    <h1>Secure Login</h1>
+    <p style="color:#9ca3af;">Authorized users only.</p>
 
-  <input type="file" id="chartInput" accept="image/*">
-  <button onclick="fakeAnalyze()">Generate AI Analysis</button>
+    <input id="username" type="text" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
 
-  <div id="loading">Analyzing chart…</div>
+    <button onclick="login()">Login</button>
 
-  <div id="resultBox">Your analysis will appear here.</div>
+    <p id="loginMessage" style="color:#ef4444; margin-top:10px;"></p>
+  </div>
+
+  <!-- ANALYZER -->
+  <div id="analyzerPanel" class="hidden">
+    <h1>VisionAI Analyzer</h1>
+    <p style="color:#9ca3af;">Upload a chart to generate a full technical breakdown.</p>
+
+    <input type="file" id="chartInput" accept="image/*">
+    <button onclick="fakeAnalyze()">Generate AI Analysis</button>
+
+    <div id="loading">Analyzing chart…</div>
+
+    <div id="resultBox">Your analysis will appear here.</div>
+  </div>
 
 </div>
 
 <script>
-  function fakeAnalyze() {
-    const file = document.getElementById("chartInput").files[0];
+/* =============================
+   LOGIN SYSTEM
+============================= */
 
-    if (!file) {
-      alert("Upload a chart image first.");
-      return;
-    }
+const USERS = {
+  "zaso": "Zaso12$$",
+  // Add more users like:
+  // "email@gmail.com": "Password123"
+};
 
-    document.getElementById("loading").style.display = "block";
-    document.getElementById("resultBox").textContent = "";
+function login() {
+  const user = document.getElementById("username").value.trim();
+  const pass = document.getElementById("password").value.trim();
 
-    setTimeout(() => {
-      document.getElementById("loading").style.display = "none";
-
-      const fakeAnalysis = `
-📊 **VISIONAI – AUTOMATED CHART BREAKDOWN**
-
-**Trend Analysis**
-• Market is currently in a ${pick(["bullish uptrend", "bearish downtrend", "rangebound accumulation", "slow reversal phase"])}.
-• Momentum is ${pick(["strengthening", "weakening", "neutral"])} with clear signs of ${pick(["trend continuation", "retracement", "liquidity sweep"])}.
-
-**Market Structure**
-• Recent BOS: ${pick(["Bullish BOS above previous swing high", "Bearish BOS under structure low"])}
-• CHoCH detected near: ${pick(["key supply zone", "demand mitigation", "FVG region"])}
-• Higher timeframe shows ${pick(["premium zone sweep", "discount zone rejection", "mid-range compression"])}.
-
-**Liquidity Map**
-• Liquidity resting above: ${rand(3)} recent highs  
-• Liquidity resting below: ${rand(3)} equal lows  
-• Smart money likely targeting: **${pick(["external liquidity", "internal range liquidity", "equal high sweep"])}**
-
-**Key Levels**
-• Major Support: ${price()}  
-• Major Resistance: ${price()}  
-• Imbalance filled: ${pick(["partial", "full", "none"])}  
-• Fair Value Gap detected on the ${pick(["1m", "5m", "15m", "1H"])} timeframe.
-
-**Entry Models**
-Suggested model: **${pick(["Break of Structure → Retracement Entry", "Liquidity Sweep → Reversal Entry", "FVG Tap → Continuation Entry", "Mitigation Block Entry"])}**
-
-**Projected Move**
-• Expected short-term direction: **${pick(["Up", "Down"])}**
-• Estimated next target price: **${price()}**
-• Confidence level: **${rand(40)+50}%**
-
-⚠️ *This is an automated educational analysis and not financial advice.*`;
-
-      document.getElementById("resultBox").textContent = fakeAnalysis;
-    }, 2000);
+  if (!USERS[user] || USERS[user] !== pass) {
+    document.getElementById("loginMessage").textContent = "Invalid username or password.";
+    return;
   }
 
-  function pick(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
+  document.getElementById("loginPanel").classList.add("hidden");
+  document.getElementById("analyzerPanel").classList.remove("hidden");
+}
 
-  function rand(n) {
-    return Math.floor(Math.random() * n) + 1;
-  }
+/* =============================
+   FAKE AI ANALYZER (CLEAN + COLORED)
+============================= */
 
-  function price() {
-    return (Math.random() * (68000 - 1200) + 1200).toFixed(2);
-  }
+function fakeAnalyze() {
+  const file = document.getElementById("chartInput").files[0];
+  if (!file) { alert("Upload a chart first."); return; }
+
+  document.getElementById("loading").style.display = "block";
+  document.getElementById("resultBox").innerHTML = "";
+
+  setTimeout(() => {
+    document.getElementById("loading").style.display = "none";
+
+    const analysis = `
+<div style="font-family:Inter; line-height:1.55;">
+
+  <!-- HEADER -->
+  <div style="font-size:1.25rem; font-weight:700; color:#f5b947; margin-bottom:16px;">
+    📊 VISIONAI — MARKET INTELLIGENCE REPORT
+  </div>
+
+  <!-- TREND -->
+  <div style="margin-bottom:15px;">
+    <div style="color:#f5b947; font-weight:600;">Trend Overview</div>
+    <div style="color:#d1d5db; margin-top:4px;">
+      • Market Trend: <span style="color:#22c55e;">Bullish</span><br>
+      • Momentum Strength: <span style="color:#facc15;">Weakening</span><br>
+      • Recent Behavior: Liquidity sweep detected on lower timeframe
+    </div>
+  </div>
+
+  <!-- STRUCTURE -->
+  <div style="margin-bottom:15px;">
+    <div style="color:#f5b947; font-weight:600;">Market Structure</div>
+    <div style="color:#d1d5db; margin-top:4px;">
+      • BOS: <span style="color:#ef4444;">Bearish BOS</span> under structure low<br>
+      • CHoCH: Detected near key supply zone<br>
+      • HTF Context: Mid-range compression (no clear expansion yet)
+    </div>
+  </div>
+
+  <!-- LIQUIDITY -->
+  <div style="margin-bottom:15px;">
+    <div style="color:#f5b947; font-weight:600;">Liquidity Overview</div>
+    <div style="color:#d1d5db; margin-top:4px;">
+      • Buy-side liquidity: Resting above **2** recent highs<br>
+      • Sell-side liquidity: Resting below **2** equal lows<br>
+      • Targeted Liquidity: <span style="color:#38bdf8;">External range liquidity</span>
+    </div>
+  </div>
+
+  <!-- KEY LEVELS -->
+  <div style="margin-bottom:15px;">
+    <div style="color:#f5b947; font-weight:600;">Key Levels</div>
+    <div style="color:#d1d5db; margin-top:4px;">
+      • Support Zone: <span style="color:#86efac;">31,565.69</span><br>
+      • Resistance Zone: <span style="color:#fca5a5;">38,279.02</span><br>
+      • Imbalance Status: Fully filled<br>
+      • FVG Detected: 1m timeframe
+    </div>
+  </div>
+
+  <!-- ENTRY MODEL -->
+  <div style="margin-bottom:15px;">
+    <div style="color:#f5b947; font-weight:600;">Entry Model Suggestion</div>
+    <div style="color:#d1d5db; margin-top:4px;">
+      • Model: <span style="color:#c084fc;">Break of Structure → Retracement Entry</span><br>
+      • Strategy: Target premium/discount rebalancing zones
+    </div>
+  </div>
+
+  <!-- PROJECTION -->
+  <div style="margin-bottom:15px;">
+    <div style="color:#f5b947; font-weight:600;">Projected Scenario</div>
+    <div style="color:#d1d5db; margin-top:4px;">
+      • Short-term Direction: <span style="color:#ef4444;">Down</span><br>
+      • Estimated Target Area: <span style="color:#fde047;">11,378.95</span><br>
+      • Confidence Score: <span style="color:#38bdf8;">80%</span>
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div style="font-size:.85rem; color:#9ca3af; margin-top:18px;">
+    ⚠️ Educational generated analysis. Not financial advice.
+  </div>
+
+</div>
+`;
+
+    document.getElementById("resultBox").innerHTML = analysis;
+
+  }, 2000);
+}
+
+/* Helpers */
+function rand(n){ return Math.floor(Math.random()*n)+1; }
 </script>
 
 </body>
