@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Coinexa VisionAI — Chart Analyzer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
   body {
     background: #05070e;
+    font-family: Inter, sans-serif;
+    color: #e5e7eb;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    color: #e5e7eb;
   }
 
   .container {
@@ -20,54 +22,64 @@
     background: #0b1120;
     border: 1px solid #1f2937;
     padding: 25px;
-    border-radius: 16px;
+    border-radius: 18px;
+    box-shadow: 0 0 35px rgba(0,0,0,0.6);
   }
 
   h1 {
-    margin-top: 0;
     text-align: center;
+    margin-bottom: 6px;
     color: #f5b947;
+    font-weight: 700;
+    font-size: 1.8rem;
+  }
+
+  p {
+    text-align: center;
+    font-size: .9rem;
+    color: #9ca3af;
+    margin-bottom: 20px;
   }
 
   input[type="file"] {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border-radius: 12px;
     background: #111827;
     border: 1px solid #374151;
-    color: white;
-    margin-top: 14px;
+    color: #fff;
   }
 
   button {
     width: 100%;
-    padding: 14px;
-    border-radius: 999px;
-    background: #f5b947;
-    border: none;
-    color: #111;
-    font-weight: bold;
-    font-size: 1rem;
     margin-top: 20px;
+    padding: 15px;
+    background: linear-gradient(135deg, #f5b947, #ffdd87);
+    border: none;
+    border-radius: 999px;
+    color: #111;
+    font-weight: 600;
+    font-size: .95rem;
     cursor: pointer;
-  }
-
-  #resultBox {
-    margin-top: 25px;
-    background: #111827;
-    padding: 18px;
-    border-radius: 12px;
-    border: 1px solid #1f2937;
-    white-space: pre-wrap;
-    font-size: 0.9rem;
+    box-shadow: 0 0 15px rgba(245,185,71,0.4);
   }
 
   #loading {
     display: none;
     text-align: center;
-    margin-top: 20px;
-    font-size: 1rem;
+    margin: 20px 0;
     color: #f5b947;
+    font-size: 1rem;
+  }
+
+  #resultBox {
+    margin-top: 25px;
+    background: #111827;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #1f2937;
+    font-size: .9rem;
+    white-space: pre-wrap;
   }
 </style>
 </head>
@@ -75,59 +87,80 @@
 <body>
 <div class="container">
 
-  <h1>Coinexa VisionAI</h1>
-  <p style="text-align:center; color:#9ca3af;">
-    Upload your trading chart and let VisionAI analyze trend, structure, BOS/CHoCH, liquidity, and potential entries.
-  </p>
+  <h1>VisionAI Analyzer</h1>
+  <p>Upload a trading chart to generate a full AI-style breakdown.</p>
 
   <input type="file" id="chartInput" accept="image/*">
-  <button onclick="analyzeChart()">Analyze Chart</button>
+  <button onclick="fakeAnalyze()">Generate AI Analysis</button>
 
-  <div id="loading">🔍 Analyzing chart… Please wait.</div>
+  <div id="loading">Analyzing chart…</div>
 
   <div id="resultBox">Your analysis will appear here.</div>
 
 </div>
 
 <script>
-  const API_URL = "https://coinexa-backend.onrender.com/analyze";
+  function fakeAnalyze() {
+    const file = document.getElementById("chartInput").files[0];
 
-  async function analyzeChart() {
-    const chartFile = document.getElementById("chartInput").files[0];
-
-    if (!chartFile) {
-      alert("Please upload a chart image first.");
+    if (!file) {
+      alert("Upload a chart image first.");
       return;
     }
-
-    const formData = new FormData();
-    formData.append("chart", chartFile);
 
     document.getElementById("loading").style.display = "block";
     document.getElementById("resultBox").textContent = "";
 
-    try {
-      const response = await fetch(API_URL, {
-        method: "POST",
-        body: formData
-      });
-
-      const data = await response.json();
-
+    setTimeout(() => {
       document.getElementById("loading").style.display = "none";
 
-      if (data.error) {
-        document.getElementById("resultBox").textContent =
-          "Error: " + data.error;
-      } else {
-        document.getElementById("resultBox").textContent = data.analysis;
-      }
+      const fakeAnalysis = `
+📊 **VISIONAI – AUTOMATED CHART BREAKDOWN**
 
-    } catch (err) {
-      document.getElementById("loading").style.display = "none";
-      document.getElementById("resultBox").textContent =
-        "Could not reach VisionAI backend.";
-    }
+**Trend Analysis**
+• Market is currently in a ${pick(["bullish uptrend", "bearish downtrend", "rangebound accumulation", "slow reversal phase"])}.
+• Momentum is ${pick(["strengthening", "weakening", "neutral"])} with clear signs of ${pick(["trend continuation", "retracement", "liquidity sweep"])}.
+
+**Market Structure**
+• Recent BOS: ${pick(["Bullish BOS above previous swing high", "Bearish BOS under structure low"])}
+• CHoCH detected near: ${pick(["key supply zone", "demand mitigation", "FVG region"])}
+• Higher timeframe shows ${pick(["premium zone sweep", "discount zone rejection", "mid-range compression"])}.
+
+**Liquidity Map**
+• Liquidity resting above: ${rand(3)} recent highs  
+• Liquidity resting below: ${rand(3)} equal lows  
+• Smart money likely targeting: **${pick(["external liquidity", "internal range liquidity", "equal high sweep"])}**
+
+**Key Levels**
+• Major Support: ${price()}  
+• Major Resistance: ${price()}  
+• Imbalance filled: ${pick(["partial", "full", "none"])}  
+• Fair Value Gap detected on the ${pick(["1m", "5m", "15m", "1H"])} timeframe.
+
+**Entry Models**
+Suggested model: **${pick(["Break of Structure → Retracement Entry", "Liquidity Sweep → Reversal Entry", "FVG Tap → Continuation Entry", "Mitigation Block Entry"])}**
+
+**Projected Move**
+• Expected short-term direction: **${pick(["Up", "Down"])}**
+• Estimated next target price: **${price()}**
+• Confidence level: **${rand(40)+50}%**
+
+⚠️ *This is an automated educational analysis and not financial advice.*`;
+
+      document.getElementById("resultBox").textContent = fakeAnalysis;
+    }, 2000);
+  }
+
+  function pick(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function rand(n) {
+    return Math.floor(Math.random() * n) + 1;
+  }
+
+  function price() {
+    return (Math.random() * (68000 - 1200) + 1200).toFixed(2);
   }
 </script>
 
