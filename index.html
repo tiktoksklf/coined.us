@@ -1,0 +1,3663 @@
+<html lang="en"><div id="in-page-channel-node-id" data-channel-name="in_page_channel_hZ4wKG"></div><head>
+  <meta charset="UTF-8">
+  <title>Coinexa VisionAI – Smart Chart Analysis, Reimagined</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Coinexa VisionAI lets you upload chart screenshots and get smart, educational analysis – trends, zones, and scenarios in seconds.">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <style>
+    /* ===============================
+       Global Reset & Base Styles
+       =============================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1d1f26 0, #05060a 55%, #020308 100%);
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      background: none;
+    }
+
+    /* ===============================
+       Root Colors & Utility Classes
+       =============================== */
+    :root {
+      --bg-dark: #05060a;
+      --bg-elevated: #10121a;
+      --bg-elevated-soft: #141722;
+      --bg-chip: #1b1f2b;
+
+      --gold: #f5b947;
+      --gold-soft: rgba(245, 185, 71, 0.24);
+      --gold-strong: #ffc857;
+
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.16);
+
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: #272b3a;
+
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.55);
+      --shadow-gold: 0 0 24px rgba(245, 185, 71, 0.25);
+
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-pill: 999px;
+      --max-width: 1120px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.78rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--gold-soft);
+      background: linear-gradient(
+        135deg,
+        rgba(245, 185, 71, 0.08),
+        rgba(15, 17, 27, 0.96)
+      );
+      box-shadow: 0 0 0 1px rgba(245, 185, 71, 0.16);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold-strong);
+    }
+
+    .chip-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #fff8e3, #f5b947);
+      box-shadow: 0 0 10px rgba(245, 185, 71, 0.9);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.72rem 1.4rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.94rem;
+      font-weight: 500;
+      transition: transform 0.17s ease, box-shadow 0.17s ease,
+        background 0.17s ease, color 0.17s ease, border-color 0.17s ease;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f5b947, #ffdd87);
+      color: #1b1304;
+      box-shadow: var(--shadow-gold);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 45px rgba(245, 185, 71, 0.5);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 17, 27, 0.8);
+      border-color: #272b3a;
+      color: var(--text-main);
+    }
+
+    .btn-ghost:hover {
+      background: #171925;
+      border-color: var(--gold-soft);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 0.18rem 0.6rem;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(156, 163, 175, 0.6);
+      color: var(--text-muted);
+    }
+
+    .pill-muted {
+      border-radius: var(--radius-pill);
+      padding: 0.22rem 0.7rem;
+      background: rgba(15, 17, 27, 0.9);
+      border: 1px solid #272b3a;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .section-title {
+      font-size: clamp(1.7rem, 2.6vw, 2rem);
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.97rem;
+      color: var(--text-muted);
+      max-width: 32rem;
+    }
+
+    .badge-gold-outline {
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(245, 185, 71, 0.4);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--gold-strong);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: rgba(16, 18, 26, 0.7);
+    }
+
+    .badge-gold-outline::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--gold-strong);
+      box-shadow: 0 0 12px rgba(245, 185, 71, 0.9);
+    }
+
+    /* ===============================
+       Layout - Header & Navigation
+       =============================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: radial-gradient(
+          circle at top left,
+          rgba(245, 185, 71, 0.08),
+          transparent 58%
+        ),
+        rgba(3, 4, 12, 0.94);
+      border-bottom: 1px solid rgba(39, 43, 58, 0.9);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 0;
+      gap: 1rem;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 0.9rem;
+      background: radial-gradient(circle at 30% 20%, #fffdf5, #f5b947);
+      box-shadow: 0 0 16px rgba(245, 185, 71, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      inset: 35%;
+      border-radius: inherit;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.26), transparent);
+    }
+
+    .logo-mark span {
+      position: relative;
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: #201100;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+    }
+
+    .logo-title {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .logo-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.7rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.25rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background: linear-gradient(to right, #f5b947, #ffdd87);
+      border-radius: 999px;
+      transition: width 0.18s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .nav-login {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .nav-cta {
+      padding-inline: 1.1rem;
+    }
+
+    .nav-mobile-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(39, 43, 58, 0.9);
+      background: rgba(14, 16, 23, 0.9);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hamburger {
+      width: 18px;
+      height: 14px;
+      position: relative;
+    }
+
+    .hamburger span {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      transition: transform 0.18s ease, top 0.18s ease, opacity 0.18s ease;
+    }
+
+    .hamburger span:nth-child(1) {
+      top: 0;
+    }
+
+    .hamburger span:nth-child(2) {
+      top: 6px;
+    }
+
+    .hamburger span:nth-child(3) {
+      top: 12px;
+    }
+
+    .nav-mobile-toggle.active .hamburger span:nth-child(1) {
+      top: 6px;
+      transform: rotate(45deg);
+    }
+
+    .nav-mobile-toggle.active .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-mobile-toggle.active .hamburger span:nth-child(3) {
+      top: 6px;
+      transform: rotate(-45deg);
+    }
+
+    .nav-links-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 0.9rem;
+      padding-bottom: 0.8rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links-mobile a {
+      padding: 0.15rem 0;
+    }
+
+    /* ===============================
+       Hero Section
+       =============================== */
+    .hero {
+      padding: 3.1rem 0 3.6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-background-glow {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-glow-main {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 999px;
+      background: radial-gradient(
+        circle,
+        rgba(245, 185, 71, 0.23),
+        rgba(10, 10, 10, 0)
+      );
+      filter: blur(1px);
+      top: -30%;
+      right: -10%;
+      opacity: 0.55;
+    }
+
+    .hero-glow-side {
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border-radius: 999px;
+      background: radial-gradient(
+        circle,
+        rgba(79, 70, 229, 0.26),
+        rgba(5, 5, 12, 0)
+      );
+      bottom: -10%;
+      left: -20%;
+      opacity: 0.6;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
+      gap: 3.1rem;
+      align-items: center;
+    }
+
+    .hero-left {
+      max-width: 34rem;
+    }
+
+    .hero-kicker {
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 3.5vw, 3.1rem);
+      line-height: 1.05;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(120deg, #f5b947, #ffecb3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.97rem;
+      color: var(--text-muted);
+      margin-bottom: 1.6rem;
+      max-width: 30rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-secondary-note {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .hero-secondary-note-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 16px rgba(34, 197, 94, 0.8);
+    }
+
+    .hero-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.6rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .metric {
+      display: flex;
+      flex-direction: column;
+      gap: 0.16rem;
+    }
+
+    .metric-label {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    .metric-value {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .metric-value span {
+      color: var(--gold-strong);
+    }
+
+    /* ===============================
+       Hero Right - Mockup
+       =============================== */
+    .hero-right {
+      display: flex;
+      justify-content: center;
+    }
+
+    .mockup-card {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+      border-radius: 26px;
+      background: radial-gradient(
+          circle at top,
+          rgba(245, 185, 71, 0.18),
+          rgba(10, 12, 24, 1)
+        ),
+        linear-gradient(145deg, #050711, #0b0d18);
+      box-shadow: var(--shadow-soft);
+      padding: 1.2rem 1.1rem 1.15rem;
+      border: 1px solid rgba(70, 79, 110, 0.7);
+      overflow: hidden;
+    }
+
+    .mockup-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.7rem;
+    }
+
+    .mockup-tabs {
+      display: flex;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+    }
+
+    .mockup-tab {
+      padding: 0.28rem 0.6rem;
+      border-radius: var(--radius-pill);
+      background: rgba(9, 10, 17, 0.9);
+      border: 1px solid rgba(39, 43, 58, 1);
+      color: var(--text-muted);
+    }
+
+    .mockup-tab.active {
+      background: linear-gradient(135deg, #f5b947, #ffdd87);
+      color: #1b1304;
+      border-color: transparent;
+    }
+
+    .mockup-badge {
+      font-size: 0.7rem;
+      padding: 0.22rem 0.65rem;
+      border-radius: var(--radius-pill);
+      background: rgba(10, 10, 12, 0.86);
+      border: 1px solid rgba(245, 185, 71, 0.4);
+      color: var(--gold-strong);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .mockup-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.9);
+    }
+
+    .mockup-main {
+      border-radius: 18px;
+      border: 1px solid rgba(42, 47, 76, 1);
+      padding: 0.9rem;
+      background: radial-gradient(
+          circle at top left,
+          rgba(245, 185, 71, 0.13),
+          transparent
+        ),
+        #050815;
+      display: grid;
+      grid-template-columns: 1.1fr 0.95fr;
+      gap: 0.8rem;
+    }
+
+    .mockup-chart {
+      position: relative;
+      border-radius: 16px;
+      border: 1px solid rgba(50, 55, 90, 1);
+      padding: 0.65rem 0.6rem 0.6rem;
+      background: radial-gradient(
+          circle at top,
+          rgba(245, 185, 71, 0.12),
+          rgba(5, 6, 12, 0.95)
+        ),
+        #050712;
+      overflow: hidden;
+    }
+
+    .mockup-chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.7rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+    }
+
+    .mockup-chart-title {
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+    }
+
+    .mockup-chart-title span:nth-child(1) {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #9ca3af;
+    }
+
+    .mockup-chart-title span:nth-child(2) {
+      font-size: 0.86rem;
+      color: #e5e7eb;
+    }
+
+    .mockup-chart-range {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.7rem;
+    }
+
+    .mockup-chart-canvas {
+      position: relative;
+      height: 170px;
+      border-radius: 10px;
+      background: radial-gradient(
+          circle at bottom,
+          rgba(4, 120, 87, 0.24),
+          transparent 68%
+        ),
+        radial-gradient(
+          circle at top,
+          rgba(248, 113, 113, 0.3),
+          transparent 70%
+        ),
+        #030711;
+      overflow: hidden;
+    }
+
+    .mockup-grid-line {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(75, 85, 99, 0.5),
+        transparent
+      );
+      opacity: 0.8;
+    }
+
+    .mockup-grid-line:nth-child(1) {
+      top: 22%;
+    }
+
+    .mockup-grid-line:nth-child(2) {
+      top: 49%;
+    }
+
+    .mockup-grid-line:nth-child(3) {
+      top: 76%;
+    }
+
+    .mockup-candles {
+      position: absolute;
+      inset: 12% 6%;
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .mockup-candle {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mockup-candle-body {
+      width: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.8);
+    }
+
+    .mockup-candle.red .mockup-candle-body {
+      background: #fb7185;
+      box-shadow: 0 0 18px rgba(248, 113, 113, 0.9);
+    }
+
+    .mockup-candle-body.tall {
+      height: 72px;
+    }
+
+    .mockup-candle-body.mid {
+      height: 48px;
+    }
+
+    .mockup-candle-body.short {
+      height: 30px;
+    }
+
+    .mockup-chart-overlay-label {
+      position: absolute;
+      right: 10px;
+      top: 12px;
+      font-size: 0.66rem;
+      padding: 0.18rem 0.46rem;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 185, 71, 0.6);
+      background: rgba(10, 10, 12, 0.9);
+      color: var(--gold-strong);
+      display: inline-flex;
+      gap: 0.31rem;
+      align-items: center;
+    }
+
+    .mockup-chart-overlay-label span.icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 185, 71, 0.8);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+    }
+
+    .mockup-analysis {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      font-size: 0.8rem;
+    }
+
+    .mockup-analysis-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.3rem;
+    }
+
+    .mockup-analysis-title {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .mockup-badge-soft {
+      font-size: 0.68rem;
+      padding: 0.14rem 0.5rem;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      color: var(--text-muted);
+    }
+
+    .mockup-analysis-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .mockup-analysis-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.08rem;
+      padding: 0.42rem 0.5rem;
+      border-radius: 12px;
+      background: #050815;
+      border: 1px solid #181b24;
+    }
+
+    .mockup-analysis-item strong {
+      font-size: 0.74rem;
+      color: #e5e7eb;
+    }
+
+    .mockup-analysis-item span {
+      font-size: 0.73rem;
+      color: var(--text-muted);
+    }
+
+    .mockup-analysis-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.28rem;
+      margin-top: 0.2rem;
+    }
+
+    .mockup-tag-pill {
+      font-size: 0.65rem;
+      padding: 0.16rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid #272b3a;
+      background: rgba(11, 15, 26, 0.9);
+      color: #e5e7eb;
+    }
+
+    .mockup-footer {
+      margin-top: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.73rem;
+      color: var(--text-muted);
+    }
+
+    .mockup-footer span strong {
+      color: #e5e7eb;
+    }
+
+    .mockup-footer-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      padding: 0.3rem 0.72rem;
+      border: 1px solid rgba(245, 185, 71, 0.5);
+      background: rgba(10, 10, 12, 0.92);
+      color: var(--gold-strong);
+      cursor: pointer;
+      transition: background 0.16s ease, transform 0.16s ease;
+    }
+
+    .mockup-footer-cta:hover {
+      background: rgba(245, 185, 71, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .mockup-footer-cta-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 185, 71, 0.7);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.64rem;
+    }
+
+    .mockup-floater {
+      position: absolute;
+      left: -26px;
+      bottom: 22px;
+      padding: 0.55rem 0.9rem;
+      border-radius: 14px;
+      border: 1px solid rgba(55, 65, 81, 1);
+      background: rgba(5, 7, 15, 0.9);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .mockup-floater-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.9);
+    }
+
+    .mockup-floater span strong {
+      color: #e5e7eb;
+    }
+
+    /* ===============================
+       Trusted By / Logos Bar
+       =============================== */
+    .trusted {
+      padding: 0 0 2.4rem;
+    }
+
+    .trusted-inner {
+      border-radius: 999px;
+      border: 1px solid #272b3a;
+      background: rgba(12, 14, 23, 0.96);
+      padding: 0.65rem 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .trusted-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .trusted-logos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
+
+    .trusted-logo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.28rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(8, 10, 18, 1);
+      border: 1px solid #272b3a;
+    }
+
+    .trusted-logo-pill span.icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 6px;
+      background: radial-gradient(circle at 30% 20%, #f5b947, #1f2937);
+      box-shadow: 0 0 10px rgba(245, 185, 71, 0.8);
+    }
+
+    /* ===============================
+       Features Section
+       =============================== */
+    .section {
+      padding: 2.8rem 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.5rem;
+      margin-bottom: 2.1rem;
+    }
+
+    .section-header-left {
+      max-width: 30rem;
+    }
+
+    .section-header-right {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 22rem;
+      text-align: right;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .feature-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid #272b3a;
+      background: radial-gradient(
+          circle at top,
+          rgba(245, 185, 71, 0.11),
+          transparent 58%
+        ),
+        rgba(7, 9, 20, 0.98);
+      padding: 1.05rem 1.05rem 1.1rem;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .feature-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 0.9rem;
+      background: radial-gradient(circle at 30% 20%, #f5b947, #1f2937);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      box-shadow: 0 0 16px rgba(245, 185, 71, 0.8);
+    }
+
+    .feature-title {
+      font-size: 0.96rem;
+      font-weight: 500;
+    }
+
+    .feature-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .feature-meta-row {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: 0.4rem;
+    }
+
+    .feature-meta-pill {
+      font-size: 0.7rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(12, 15, 26, 1);
+      border: 1px solid #272b3a;
+      color: #9ca3af;
+    }
+
+    /* ===============================
+       How It Works Section
+       =============================== */
+    .how-it-works {
+      display: grid;
+      grid-template-columns: 1.1fr 1.1fr;
+      gap: 2.4rem;
+      align-items: flex-start;
+    }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.9rem;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #f5b947, #4b5563);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1b1304;
+      box-shadow: 0 0 18px rgba(245, 185, 71, 0.9);
+    }
+
+    .step-content-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.12rem;
+    }
+
+    .step-content-text {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .step-tag {
+      font-size: 0.7rem;
+      color: #e5e7eb;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(31, 41, 55, 0.85);
+    }
+
+    .how-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid #272b3a;
+      background: radial-gradient(
+          circle at top,
+          rgba(79, 70, 229, 0.13),
+          transparent 60%
+        ),
+        rgba(7, 9, 20, 0.98);
+      padding: 1.2rem 1.1rem 1.2rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .how-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .how-card-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .how-card-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .how-card-body {
+      display: grid;
+      grid-template-columns: 1.1fr 1.1fr;
+      gap: 0.7rem;
+      font-size: 0.8rem;
+    }
+
+    .how-pill-column {
+      display: flex;
+      flex-direction: column;
+      gap: 0.42rem;
+    }
+
+    .how-pill {
+      border-radius: 11px;
+      padding: 0.4rem 0.48rem;
+      background: rgba(5, 7, 16, 0.95);
+      border: 1px solid #181b24;
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+    }
+
+    .how-pill strong {
+      font-size: 0.78rem;
+      color: #e5e7eb;
+    }
+
+    .how-pill span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .how-badge {
+      margin-top: 0.7rem;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      border: 1px dashed #374151;
+      background: rgba(7, 9, 20, 0.9);
+    }
+
+    .how-badge span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #f97316;
+      box-shadow: 0 0 16px rgba(249, 115, 22, 0.8);
+    }
+
+    /* ===============================
+       Pricing Section
+       =============================== */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.3rem;
+    }
+
+    .pricing-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid #272b3a;
+      background: rgba(7, 9, 20, 0.98);
+      padding: 1.1rem 1rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    .pricing-card.featured {
+      border-color: rgba(245, 185, 71, 0.8);
+      background: radial-gradient(
+          circle at top,
+          rgba(245, 185, 71, 0.12),
+          transparent 70%
+        ),
+        rgba(6, 8, 16, 0.98);
+      box-shadow: var(--shadow-gold);
+      transform: translateY(-4px);
+    }
+
+    .pricing-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .pricing-name {
+      font-size: 0.96rem;
+      font-weight: 500;
+    }
+
+    .pricing-tagline {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .pricing-featured-tag {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(245, 185, 71, 0.18);
+      border: 1px solid rgba(245, 185, 71, 0.7);
+      color: var(--gold-strong);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .pricing-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.2rem;
+      margin-top: 0.3rem;
+    }
+
+    .pricing-price {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .pricing-interval {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .pricing-list {
+      margin: 0.6rem 0 0.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .pricing-list li {
+      list-style: none;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .pricing-list li::before {
+      content: "●";
+      font-size: 0.5rem;
+      margin-top: 0.28rem;
+      color: var(--gold-strong);
+    }
+
+    .pricing-cta {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .pricing-note {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* ===============================
+       Testimonials / Social Proof
+       =============================== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1.1fr;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .quote-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid #272b3a;
+      background: rgba(7, 9, 20, 0.98);
+      padding: 1.1rem 1rem 1rem;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .quote-card p {
+      margin-bottom: 0.75rem;
+    }
+
+    .quote-author {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+    }
+
+    .quote-author-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+    }
+
+    .quote-name {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .quote-role {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .quote-badge {
+      font-size: 0.7rem;
+      padding: 0.16rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid #374151;
+      background: rgba(12, 15, 26, 0.95);
+      color: #9ca3af;
+    }
+
+    .testimonial-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+      font-size: 0.8rem;
+    }
+
+    .testimonial-metric-card {
+      border-radius: 14px;
+      border: 1px solid #272b3a;
+      background: rgba(7, 9, 20, 0.98);
+      padding: 0.6rem 0.6rem 0.64rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .testimonial-metric-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+    }
+
+    .testimonial-metric-value {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .testimonial-metric-caption {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ===============================
+       FAQ Section
+       =============================== */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .faq-item {
+      border-radius: 14px;
+      border: 1px solid #272b3a;
+      background: rgba(7, 9, 20, 0.98);
+      overflow: hidden;
+    }
+
+    .faq-button {
+      width: 100%;
+      text-align: left;
+      padding: 0.65rem 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem;
+      font-size: 0.9rem;
+      color: #e5e7eb;
+    }
+
+    .faq-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 1px solid #4b5563;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: #9ca3af;
+      flex-shrink: 0;
+      transition: transform 0.18s ease, border-color 0.18s ease,
+        color 0.18s ease;
+    }
+
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.22s ease;
+    }
+
+    .faq-content-inner {
+      padding: 0 0.7rem 0.7rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .faq-item.active .faq-content {
+      max-height: 180px;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+      border-color: rgba(245, 185, 71, 0.7);
+      color: var(--gold-strong);
+    }
+
+    /* ===============================
+       CTA Section
+       =============================== */
+    .cta {
+      padding: 2.6rem 0 3.2rem;
+    }
+
+    .cta-inner {
+      border-radius: 26px;
+      border: 1px solid rgba(245, 185, 71, 0.75);
+      background: radial-gradient(
+          circle at top left,
+          rgba(245, 185, 71, 0.2),
+          transparent 60%
+        ),
+        rgba(8, 10, 19, 0.98);
+      padding: 1.6rem 1.4rem 1.8rem;
+      box-shadow: var(--shadow-gold);
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 1.8rem;
+      align-items: center;
+    }
+
+    .cta-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      max-width: 28rem;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .cta-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .cta-bullet {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
+    }
+
+    /* ===============================
+       Footer
+       =============================== */
+    footer {
+      border-top: 1px solid #272b3a;
+      padding: 1.5rem 0 1.8rem;
+      background: radial-gradient(
+          circle at top,
+          rgba(15, 23, 42, 0.5),
+          transparent 55%
+        ),
+        #020308;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+    }
+
+    .footer-right-note {
+      max-width: 32rem;
+    }
+
+    /* ===============================
+       Responsive
+       =============================== */
+    @media (max-width: 960px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 2.3rem;
+      }
+
+      .hero-left {
+        max-width: none;
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .mockup-card {
+        max-width: 420px;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .section-header-right {
+        text-align: left;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .how-it-works {
+        grid-template-columns: 1fr;
+      }
+
+      .how-card-body {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial-metrics {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-right {
+        display: none;
+      }
+
+      .nav-mobile-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links-mobile {
+        display: flex;
+      }
+
+      .hero {
+        padding-top: 2.4rem;
+      }
+
+      .trusted-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cta-inner {
+        padding: 1.4rem 1.1rem 1.6rem;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .mockup-main {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .trusted-inner {
+        padding-inline: 1rem;
+      }
+    }
+  </style>
+<style>@keyframes slide-in-one-tap {
+  from {
+    transform: translateY(80px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
+.trust-hide-gracefully {
+  opacity: 0;
+}
+
+.trust-wallet-one-tap .hidden {
+    display: none;
+  }
+
+.trust-wallet-one-tap .semibold {
+    font-weight: 500;
+  }
+
+.trust-wallet-one-tap .binance-plex {
+    font-family: 'Binance';
+  }
+
+.trust-wallet-one-tap .rounded-full {
+    border-radius: 50%;
+  }
+
+.trust-wallet-one-tap .flex {
+    display: flex;
+  }
+
+.trust-wallet-one-tap .flex-col {
+    flex-direction: column;
+  }
+
+.trust-wallet-one-tap .items-center {
+    align-items: center;
+  }
+
+.trust-wallet-one-tap .space-between {
+    justify-content: space-between;
+  }
+
+.trust-wallet-one-tap .justify-center {
+    justify-content: center;
+  }
+
+.trust-wallet-one-tap .w-full {
+    width: 100%;
+  }
+
+.trust-wallet-one-tap .box {
+    transition: all 0.5s cubic-bezier(0, 0, 0, 1.43);
+    animation: slide-in-one-tap 0.5s cubic-bezier(0, 0, 0, 1.43);
+    width: 384px;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 1020;
+  }
+
+.trust-wallet-one-tap .header {
+    gap: 15px;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 10px 18px;
+  }
+
+.trust-wallet-one-tap .header .left-items {
+      gap: 15px;
+    }
+
+.trust-wallet-one-tap .header .title {
+      color: #1e2329;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 28px;
+    }
+
+.trust-wallet-one-tap .header .subtitle {
+      color: #474d57;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+.trust-wallet-one-tap .header .close {
+      color: #1e2329;
+      cursor: pointer;
+    }
+
+.trust-wallet-one-tap .body {
+    padding: 9px 18px;
+    gap: 10px;
+  }
+
+.trust-wallet-one-tap .body .right-items {
+      gap: 10px;
+      width: 100%;
+    }
+
+.trust-wallet-one-tap .body .right-items .wallet-title {
+        color: #1e2329;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+      }
+
+.trust-wallet-one-tap .body .right-items .wallet-subtitle {
+        color: #474d57;
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+.trust-wallet-one-tap .connect-indicator {
+    gap: 15px;
+    padding: 8px 0;
+  }
+
+.trust-wallet-one-tap .connect-indicator .flow-icon {
+      color: #474d57;
+    }
+
+.trust-wallet-one-tap .loading-color {
+    color: #fff;
+  }
+
+.trust-wallet-one-tap .button {
+    border-radius: 50px;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    background-color: rgb(5, 0, 255);
+    border-color: rgb(229, 231, 235);
+    cursor: pointer;
+    text-align: center;
+    height: 45px;
+  }
+
+.trust-wallet-one-tap .button .button-text {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+
+.trust-wallet-one-tap .footer {
+    margin: 20px 30px;
+  }
+
+.trust-wallet-one-tap .check-icon {
+    color: #fff;
+  }
+
+@font-face {
+  font-family: 'Binance';
+  src: url(chrome-extension://egjidjbpglichdcondbcbdnbeeppgdph/fonts/BinancePlex-Regular.otf) format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Binance';
+  src: url(chrome-extension://egjidjbpglichdcondbcbdnbeeppgdph/fonts/BinancePlex-Medium.otf) format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Binance';
+  src: url(chrome-extension://egjidjbpglichdcondbcbdnbeeppgdph/fonts/BinancePlex-SemiBold.otf) format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL2FwcC9zcmMvb25lVGFwL3N0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFO0lBQ0UsMkJBQTJCO0VBQzdCO0VBQ0E7SUFDRSwwQkFBMEI7RUFDNUI7QUFDRjs7QUFFQTtFQUNFLFVBQVU7QUFDWjs7QUFHRTtJQUNFLGFBQWE7RUFDZjs7QUFFQTtJQUNFLGdCQUFnQjtFQUNsQjs7QUFFQTtJQUNFLHNCQUFzQjtFQUN4Qjs7QUFFQTtJQUNFLGtCQUFrQjtFQUNwQjs7QUFFQTtJQUNFLGFBQWE7RUFDZjs7QUFFQTtJQUNFLHNCQUFzQjtFQUN4Qjs7QUFFQTtJQUNFLG1CQUFtQjtFQUNyQjs7QUFFQTtJQUNFLDhCQUE4QjtFQUNoQzs7QUFFQTtJQUNFLHVCQUF1QjtFQUN6Qjs7QUFFQTtJQUNFLFdBQVc7RUFDYjs7QUFFQTtJQUNFLGdEQUFnRDtJQUNoRCw0REFBNEQ7SUFDNUQsWUFBWTtJQUNaLG1CQUFtQjtJQUNuQixnQkFBZ0I7SUFDaEIsK0NBQStDO0lBQy9DLGVBQWU7SUFDZixXQUFXO0lBQ1gsWUFBWTtJQUNaLGFBQWE7RUFDZjs7QUFFQTtJQUNFLFNBQVM7SUFDVCxnQ0FBZ0M7SUFDaEMsa0JBQWtCO0VBdUJwQjs7QUFyQkU7TUFDRSxTQUFTO0lBQ1g7O0FBRUE7TUFDRSxjQUFjO01BQ2QsZUFBZTtNQUNmLGdCQUFnQjtNQUNoQixpQkFBaUI7SUFDbkI7O0FBRUE7TUFDRSxjQUFjO01BQ2QsZUFBZTtNQUNmLGlCQUFpQjtJQUNuQjs7QUFFQTtNQUNFLGNBQWM7TUFDZCxlQUFlO0lBQ2pCOztBQUdGO0lBQ0UsaUJBQWlCO0lBQ2pCLFNBQVM7RUFtQlg7O0FBakJFO01BQ0UsU0FBUztNQUNULFdBQVc7SUFjYjs7QUFaRTtRQUNFLGNBQWM7UUFDZCxlQUFlO1FBQ2YsZ0JBQWdCO1FBQ2hCLGlCQUFpQjtNQUNuQjs7QUFFQTtRQUNFLGNBQWM7UUFDZCxlQUFlO1FBQ2YsaUJBQWlCO01BQ25COztBQUlKO0lBQ0UsU0FBUztJQUNULGNBQWM7RUFLaEI7O0FBSEU7TUFDRSxjQUFjO0lBQ2hCOztBQUdGO0lBQ0UsV0FBVztFQUNiOztBQUVBO0lBQ0UsbUJBQW1CO0lBQ25CLDhCQUE4QjtJQUM5QixtQkFBbUI7SUFDbkIsZ0NBQWdDO0lBQ2hDLGdDQUFnQztJQUNoQyxlQUFlO0lBQ2Ysa0JBQWtCO0lBQ2xCLFlBQVk7RUFRZDs7QUFORTtNQUNFLFdBQVc7TUFDWCxlQUFlO01BQ2YsZ0JBQWdCO01BQ2hCLGlCQUFpQjtJQUNuQjs7QUFHRjtJQUNFLGlCQUFpQjtFQUNuQjs7QUFFQTtJQUNFLFdBQVc7RUFDYjs7QUFHRjtFQUNFLHNCQUFzQjtFQUN0QiwrREFBMEU7RUFDMUUsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLHNCQUFzQjtFQUN0QiwrREFBeUU7RUFDekUsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLHNCQUFzQjtFQUN0QiwrREFBMkU7RUFDM0UsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQiIsInNvdXJjZXNDb250ZW50IjpbIkBrZXlmcmFtZXMgc2xpZGUtaW4tb25lLXRhcCB7XG4gIGZyb20ge1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSg4MHB4KTtcbiAgfVxuICB0byB7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDBweCk7XG4gIH1cbn1cblxuLnRydXN0LWhpZGUtZ3JhY2VmdWxseSB7XG4gIG9wYWNpdHk6IDA7XG59XG5cbi50cnVzdC13YWxsZXQtb25lLXRhcCB7XG4gIC5oaWRkZW4ge1xuICAgIGRpc3BsYXk6IG5vbmU7XG4gIH1cblxuICAuc2VtaWJvbGQge1xuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIH1cblxuICAuYmluYW5jZS1wbGV4IHtcbiAgICBmb250LWZhbWlseTogJ0JpbmFuY2UnO1xuICB9XG5cbiAgLnJvdW5kZWQtZnVsbCB7XG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xuICB9XG5cbiAgLmZsZXgge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gIH1cblxuICAuZmxleC1jb2wge1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIH1cblxuICAuaXRlbXMtY2VudGVyIHtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICB9XG5cbiAgLnNwYWNlLWJldHdlZW4ge1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgfVxuXG4gIC5qdXN0aWZ5LWNlbnRlciB7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIH1cblxuICAudy1mdWxsIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgfVxuXG4gIC5ib3gge1xuICAgIHRyYW5zaXRpb246IGFsbCAwLjVzIGN1YmljLWJlemllcigwLCAwLCAwLCAxLjQzKTtcbiAgICBhbmltYXRpb246IHNsaWRlLWluLW9uZS10YXAgMC41cyBjdWJpYy1iZXppZXIoMCwgMCwgMCwgMS40Myk7XG4gICAgd2lkdGg6IDM4NHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDE1cHg7XG4gICAgYmFja2dyb3VuZDogI2ZmZjtcbiAgICBib3gtc2hhZG93OiAwcHggMnB4IDRweCAwcHggcmdiYSgwLCAwLCAwLCAwLjI1KTtcbiAgICBwb3NpdGlvbjogZml4ZWQ7XG4gICAgcmlnaHQ6IDMwcHg7XG4gICAgYm90dG9tOiAzMHB4O1xuICAgIHotaW5kZXg6IDEwMjA7XG4gIH1cblxuICAuaGVhZGVyIHtcbiAgICBnYXA6IDE1cHg7XG4gICAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNlNmU2ZTY7XG4gICAgcGFkZGluZzogMTBweCAxOHB4O1xuXG4gICAgLmxlZnQtaXRlbXMge1xuICAgICAgZ2FwOiAxNXB4O1xuICAgIH1cblxuICAgIC50aXRsZSB7XG4gICAgICBjb2xvcjogIzFlMjMyOTtcbiAgICAgIGZvbnQtc2l6ZTogMThweDtcbiAgICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gICAgICBsaW5lLWhlaWdodDogMjhweDtcbiAgICB9XG5cbiAgICAuc3VidGl0bGUge1xuICAgICAgY29sb3I6ICM0NzRkNTc7XG4gICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICBsaW5lLWhlaWdodDogMjBweDtcbiAgICB9XG5cbiAgICAuY2xvc2Uge1xuICAgICAgY29sb3I6ICMxZTIzMjk7XG4gICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgfVxuICB9XG5cbiAgLmJvZHkge1xuICAgIHBhZGRpbmc6IDlweCAxOHB4O1xuICAgIGdhcDogMTBweDtcblxuICAgIC5yaWdodC1pdGVtcyB7XG4gICAgICBnYXA6IDEwcHg7XG4gICAgICB3aWR0aDogMTAwJTtcblxuICAgICAgLndhbGxldC10aXRsZSB7XG4gICAgICAgIGNvbG9yOiAjMWUyMzI5O1xuICAgICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gICAgICAgIGxpbmUtaGVpZ2h0OiAyMHB4O1xuICAgICAgfVxuXG4gICAgICAud2FsbGV0LXN1YnRpdGxlIHtcbiAgICAgICAgY29sb3I6ICM0NzRkNTc7XG4gICAgICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgICAgICAgbGluZS1oZWlnaHQ6IDIwcHg7XG4gICAgICB9XG4gICAgfVxuICB9XG5cbiAgLmNvbm5lY3QtaW5kaWNhdG9yIHtcbiAgICBnYXA6IDE1cHg7XG4gICAgcGFkZGluZzogOHB4IDA7XG5cbiAgICAuZmxvdy1pY29uIHtcbiAgICAgIGNvbG9yOiAjNDc0ZDU3O1xuICAgIH1cbiAgfVxuXG4gIC5sb2FkaW5nLWNvbG9yIHtcbiAgICBjb2xvcjogI2ZmZjtcbiAgfVxuXG4gIC5idXR0b24ge1xuICAgIGJvcmRlci1yYWRpdXM6IDUwcHg7XG4gICAgb3V0bGluZTogMnB4IHNvbGlkIHRyYW5zcGFyZW50O1xuICAgIG91dGxpbmUtb2Zmc2V0OiAycHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDUsIDAsIDI1NSk7XG4gICAgYm9yZGVyLWNvbG9yOiByZ2IoMjI5LCAyMzEsIDIzNSk7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBoZWlnaHQ6IDQ1cHg7XG5cbiAgICAuYnV0dG9uLXRleHQge1xuICAgICAgY29sb3I6ICNmZmY7XG4gICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICBmb250LXdlaWdodDogNjAwO1xuICAgICAgbGluZS1oZWlnaHQ6IDIwcHg7XG4gICAgfVxuICB9XG5cbiAgLmZvb3RlciB7XG4gICAgbWFyZ2luOiAyMHB4IDMwcHg7XG4gIH1cblxuICAuY2hlY2staWNvbiB7XG4gICAgY29sb3I6ICNmZmY7XG4gIH1cbn1cblxuQGZvbnQtZmFjZSB7XG4gIGZvbnQtZmFtaWx5OiAnQmluYW5jZSc7XG4gIHNyYzogdXJsKCcuL2ZvbnRzL2JpbmFuY2VQbGV4L0JpbmFuY2VQbGV4LVJlZ3VsYXIub3RmJykgZm9ybWF0KCdvcGVudHlwZScpO1xuICBmb250LXdlaWdodDogNDAwO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG59XG5cbkBmb250LWZhY2Uge1xuICBmb250LWZhbWlseTogJ0JpbmFuY2UnO1xuICBzcmM6IHVybCgnLi9mb250cy9iaW5hbmNlUGxleC9CaW5hbmNlUGxleC1NZWRpdW0ub3RmJykgZm9ybWF0KCdvcGVudHlwZScpO1xuICBmb250LXdlaWdodDogNTAwO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG59XG5cbkBmb250LWZhY2Uge1xuICBmb250LWZhbWlseTogJ0JpbmFuY2UnO1xuICBzcmM6IHVybCgnLi9mb250cy9iaW5hbmNlUGxleC9CaW5hbmNlUGxleC1TZW1pQm9sZC5vdGYnKSBmb3JtYXQoJ29wZW50eXBlJyk7XG4gIGZvbnQtd2VpZ2h0OiA2MDA7XG4gIGZvbnQtc3R5bGU6IG5vcm1hbDtcbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */</style></head>
+<body>
+  <!-- ===============================
+       Header / Navigation
+       =============================== -->
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <div class="nav-left">
+          <div class="logo-mark">
+            <span>CX</span>
+          </div>
+          <div class="logo-text">
+            <div class="logo-title">Coinexa VisionAI</div>
+            <div class="logo-sub">Chart Intelligence</div>
+          </div>
+        </div>
+
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How it Works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="nav-right">
+          <a href="#" class="nav-login">Log In</a>
+          <button class="btn btn-primary nav-cta">Get Started</button>
+        </div>
+
+        <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation">
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+      </nav>
+
+      <div class="nav-links-mobile" id="mobileNav">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#" style="margin-top:0.2rem;">Log In</a>
+        <button class="btn btn-primary" style="margin-top:0.2rem; width:fit-content;">
+          Start Free
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===============================
+       Hero
+       =============================== -->
+  <section class="hero">
+    <div class="hero-background-glow">
+      <div class="hero-glow-main"></div>
+      <div class="hero-glow-side"></div>
+    </div>
+
+    <div class="container hero-inner">
+      <!-- Hero Left -->
+      <div class="hero-left">
+        <div class="hero-kicker">
+          <span class="chip">
+            <span class="chip-dot"></span>
+            Upload · Analyze · Learn
+          </span>
+        </div>
+
+        <h1 class="hero-title">
+          Screenshot your
+          <span class="highlight">candles</span>.  
+          Let VisionAI teach the
+          <span class="highlight">story</span>.
+        </h1>
+
+        <p class="hero-subtitle">
+          Coinexa VisionAI turns chart screenshots into structured,
+          <strong>educational</strong> breakdowns. Spot trends, zones, and risk
+          scenarios in seconds — no indicators or overlays required.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary">
+            Start Free Analysis
+            <span>→</span>
+          </button>
+
+          <button class="btn btn-ghost">
+            Watch 90s Preview
+          </button>
+        </div>
+
+        <div class="hero-secondary-note">
+          <div class="hero-secondary-note-dot"></div>
+          <span>Simulated insights only. Not trading or financial advice.</span>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric">
+            <span class="metric-label">Traders</span>
+            <span class="metric-value">
+              <span>120,000+</span> using VisionAI for learning
+            </span>
+          </div>
+
+          <div class="metric">
+            <span class="metric-label">Analysis Speed</span>
+            <span class="metric-value">Under 6 seconds per screenshot</span>
+          </div>
+
+          <div class="metric">
+            <span class="metric-label">Patterns</span>
+            <span class="metric-value">30+ common structures recognized</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Right -->
+      <div class="hero-right">
+        <div class="mockup-card">
+          <div class="mockup-header">
+            <div class="mockup-tabs">
+              <div class="mockup-tab active">VisionAI</div>
+              <div class="mockup-tab">Risk Map</div>
+              <div class="mockup-tab">Scenarios</div>
+            </div>
+            <div class="mockup-badge">
+              <span class="mockup-badge-dot"></span>
+              Live Preview
+            </div>
+          </div>
+
+          <div class="mockup-main">
+            <!-- Chart side -->
+            <div class="mockup-chart">
+              <div class="mockup-chart-header">
+                <div class="mockup-chart-title">
+                  <span>Educational Snapshot</span>
+                  <span>BTCUSDT – 4H</span>
+                </div>
+                <div class="mockup-chart-range">
+                  <span class="pill-muted">Trend Bias: Up</span>
+                </div>
+              </div>
+
+              <div class="mockup-chart-canvas">
+                <div class="mockup-grid-line"></div>
+                <div class="mockup-grid-line"></div>
+                <div class="mockup-grid-line"></div>
+
+                <div class="mockup-candles">
+                  <div class="mockup-candle">
+                    <div class="mockup-candle-body short"></div>
+                  </div>
+                  <div class="mockup-candle red">
+                    <div class="mockup-candle-body mid"></div>
+                  </div>
+                  <div class="mockup-candle">
+                    <div class="mockup-candle-body short"></div>
+                  </div>
+                  <div class="mockup-candle">
+                    <div class="mockup-candle-body mid"></div>
+                  </div>
+                  <div class="mockup-candle red">
+                    <div class="mockup-candle-body tall"></div>
+                  </div>
+                  <div class="mockup-candle">
+                    <div class="mockup-candle-body mid"></div>
+                  </div>
+                  <div class="mockup-candle">
+                    <div class="mockup-candle-body tall"></div>
+                  </div>
+                  <div class="mockup-candle red">
+                    <div class="mockup-candle-body short"></div>
+                  </div>
+                </div>
+
+                <div class="mockup-chart-overlay-label">
+                  <span class="icon">AI</span>
+                  <span>Demand zone detected</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Analysis side -->
+            <div class="mockup-analysis">
+              <div class="mockup-analysis-header">
+                <div>
+                  <div class="mockup-analysis-title">Instant VisionAI Summary</div>
+                  <div class="mockup-card-sub">
+                    Interpreting uploaded screenshot · <span>4H</span>
+                  </div>
+                </div>
+                <span class="mockup-badge-soft">For education only</span>
+              </div>
+
+              <div class="mockup-analysis-list">
+                <div class="mockup-analysis-item">
+                  <strong>Market Structure</strong>
+                  <span>
+                    Higher lows forming into resistance — potential ascending
+                    channel or breakout pattern.
+                  </span>
+                  <div class="mockup-analysis-tag-row">
+                    <span class="mockup-tag-pill">Uptrend bias</span>
+                    <span class="mockup-tag-pill">Higher lows</span>
+                  </div>
+                </div>
+
+                <div class="mockup-analysis-item">
+                  <strong>Educational Risk Zone</strong>
+                  <span>
+                    Historical buyers stepped in near
+                    <strong>$41,250 – $41,600</strong>. This area often behaves as a
+                    <em>learning example</em> support region.
+                  </span>
+                </div>
+
+                <div class="mockup-analysis-item">
+                  <strong>Example Scenario (Not Advice)</strong>
+                  <span>
+                    If price holds above the identified demand zone, similar
+                    structures have previously extended toward prior highs in the
+                    <strong>$43,800+</strong> range.
+                  </span>
+                  <div class="mockup-analysis-tag-row">
+                    <span class="mockup-tag-pill">Scenario, not signal</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mockup-footer">
+                <span>
+                  Avg processing:&nbsp;
+                  <strong>3.2 seconds</strong>
+                </span>
+
+                <button class="mockup-footer-cta">
+                  <span class="mockup-footer-cta-icon">↑</span>
+                  Upload another chart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mockup-floater">
+            <span class="mockup-floater-dot"></span>
+            <span>
+              <strong>VisionAI</strong> explains structure — you decide how to trade.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================
+       Trusted Logos
+       =============================== -->
+  <section class="trusted">
+    <div class="container">
+      <div class="trusted-inner">
+        <div class="trusted-label">Referenced by teams from</div>
+        <div class="trusted-logos">
+          <div class="trusted-logo-pill">
+            <span class="icon"></span>
+            <span>Quant Labs</span>
+          </div>
+          <div class="trusted-logo-pill">
+            <span class="icon"></span>
+            <span>ChartForge Studio</span>
+          </div>
+          <div class="trusted-logo-pill">
+            <span class="icon"></span>
+            <span>CryptoDesk Pro</span>
+          </div>
+          <div class="trusted-logo-pill">
+            <span class="icon"></span>
+            <span>Midnight Markets</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================
+       Features
+       =============================== -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <span class="badge-gold-outline">Why VisionAI?</span>
+          <h2 class="section-title">Turn static screenshots into structured insight.</h2>
+          <p class="section-subtitle">
+            VisionAI doesn’t guess coins or push trades. It <strong>explains</strong> what
+            the chart is currently showing — trend, structure, zones, and educational
+            scenarios you can learn from.
+          </p>
+        </div>
+
+        <div class="section-header-right">
+          <p>
+            Use it to study, build trading journals, or double-check your own read on
+            the chart. VisionAI is a training partner, not a signal caller.
+          </p>
+        </div>
+      </div>
+
+      <div class="features-grid">
+        <article class="feature-card">
+          <div class="feature-icon">①</div>
+          <h3 class="feature-title">Screenshot-first workflow</h3>
+          <p class="feature-desc">
+            No cluttered integrations. Take a screenshot from any platform, drop it
+            into VisionAI, and get a clean explanation of what the candles are
+            telling you.
+          </p>
+          <div class="feature-meta-row">
+            <span class="feature-meta-pill">Works with any broker</span>
+            <span class="feature-meta-pill">Crypto · FX · Indices</span>
+          </div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">②</div>
+          <h3 class="feature-title">Trend &amp; structure detection</h3>
+          <p class="feature-desc">
+            VisionAI detects swing highs and lows, maps market structure, and flags
+            potential channels or consolidations to study — in your timeframe.
+          </p>
+          <div class="feature-meta-row">
+            <span class="feature-meta-pill">HH / HL / LH / LL</span>
+            <span class="feature-meta-pill">Break of structure</span>
+          </div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">③</div>
+          <h3 class="feature-title">Educational risk zones</h3>
+          <p class="feature-desc">
+            Instead of calling “entries,” VisionAI highlights regions where buyers or
+            sellers previously reacted, helping you understand support and resistance
+            behavior.
+          </p>
+          <div class="feature-meta-row">
+            <span class="feature-meta-pill">Support &amp; resistance</span>
+            <span class="feature-meta-pill">Liquidity clusters</span>
+          </div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">④</div>
+          <h3 class="feature-title">Scenario-based outputs</h3>
+          <p class="feature-desc">
+            Get “if/then” scenarios based on common pattern outcomes, so you can
+            practice thinking in probabilities — not guarantees.
+          </p>
+          <div class="feature-meta-row">
+            <span class="feature-meta-pill">No financial advice</span>
+            <span class="feature-meta-pill">Pure simulation</span>
+          </div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">⑤</div>
+          <h3 class="feature-title">Multi-timeframe perspective</h3>
+          <p class="feature-desc">
+            Combine multiple screenshots (e.g., 15m / 1H / 4H) and teach VisionAI to
+            summarize the higher-timeframe context of your setups.
+          </p>
+          <div class="feature-meta-row">
+            <span class="feature-meta-pill">Stacked screenshots</span>
+            <span class="feature-meta-pill">Top-down learning</span>
+          </div>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon">⑥</div>
+          <h3 class="feature-title">Session &amp; volatility notes</h3>
+          <p class="feature-desc">
+            VisionAI annotates sessions, volatility bursts, and calm phases so you can
+            feel the rhythm of the market you’re studying.
+          </p>
+          <div class="feature-meta-row">
+            <span class="feature-meta-pill">Volume hints</span>
+            <span class="feature-meta-pill">Session context</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================
+       How It Works
+       =============================== -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <span class="badge-gold-outline">Workflow</span>
+          <h2 class="section-title">From raw screenshot to clarity in three moves.</h2>
+          <p class="section-subtitle">
+            VisionAI is built to sit beside your existing trading routine — not replace
+            it. Capture what you’re seeing, upload, and get an instant breakdown.
+          </p>
+        </div>
+        <div class="section-header-right">
+          <p>
+            Think of it as a second set of eyes, always focused, never emotional, and
+            designed to help you see what the chart is already showing.
+          </p>
+        </div>
+      </div>
+
+      <div class="how-it-works">
+        <div class="steps-list">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div>
+              <div class="step-content-title">Capture the chart you’re studying</div>
+              <p class="step-content-text">
+                Take a screenshot from TradingView, MetaTrader, cTrader, or your
+                exchange. Any candlestick chart, any asset, any timeframe.
+              </p>
+              <span class="step-tag">No API keys · No account linking</span>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <div>
+              <div class="step-content-title">Upload to VisionAI</div>
+              <p class="step-content-text">
+                Drag and drop the screenshot into the VisionAI panel. Our visual model
+                reads candles, levels, and structure directly from the image.
+              </p>
+              <span class="step-tag">Avg processing time: ~3 seconds</span>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <div>
+              <div class="step-content-title">
+                Read the explanation. Decide for yourself.
+              </div>
+              <p class="step-content-text">
+                VisionAI outputs a structured summary — trend, zones, structure, and
+                hypothetical scenarios so you can refine your own plan.
+              </p>
+              <span class="step-tag">You stay in control · Always</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="how-card">
+          <div class="how-card-header">
+            <div>
+              <div class="how-card-title">Example upload → output</div>
+              <div class="how-card-sub">
+                How VisionAI might explain a generic 1H BTC screenshot.
+              </div>
+            </div>
+            <span class="tag">Sample</span>
+          </div>
+
+          <div class="how-card-body">
+            <div class="how-pill-column">
+              <div class="how-pill">
+                <strong>Trend reading</strong>
+                <span>
+                  “Price is making higher lows while pushing into a flat resistance
+                  band — classic squeeze behavior.”
+                </span>
+              </div>
+
+              <div class="how-pill">
+                <strong>Educational SL zone</strong>
+                <span>
+                  “Many traders would study the area below recent higher lows as a
+                  <em>theoretical</em> invalidation region.”
+                </span>
+              </div>
+            </div>
+
+            <div class="how-pill-column">
+              <div class="how-pill">
+                <strong>Target scenarios</strong>
+                <span>
+                  “If buyers maintain control above support, breakouts from similar
+                  structures have historically reached prior swing highs.”
+                </span>
+              </div>
+
+              <div class="how-pill">
+                <strong>Risk reminder</strong>
+                <span>
+                  “All outcomes are hypothetical and for learning only. VisionAI does
+                  not recommend real trades.”
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="how-badge">
+            <span class="dot"></span>
+            <span>
+              Built for training, journaling, and system refinement — not for
+              blind signals.
+            </span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================
+       Pricing
+       =============================== -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <span class="badge-gold-outline">Pricing</span>
+          <h2 class="section-title">Choose a plan that grows with your study routine.</h2>
+          <p class="section-subtitle">
+            Every plan is built around one simple action: upload screenshots and get
+            structured, educational breakdowns without connecting a single exchange.
+          </p>
+        </div>
+        <div class="section-header-right">
+          <p>
+            Cancel anytime. No lock-ins. VisionAI doesn’t touch your capital or your
+            broker — it only sees the charts you show it.
+          </p>
+        </div>
+      </div>
+
+      <!-- PRICING GRID -->
+<!-- PRICING GRID + CRYPTO CHECKOUT -->
+<!-- PRICING GRID -->
+<div class="pricing-grid">
+
+  <!-- Starter -->
+  <article class="pricing-card">
+    <div class="pricing-label-row">
+      <div>
+        <div class="pricing-name">Starter</div>
+        <div class="pricing-tagline">Learn at your own pace.</div>
+      </div>
+    </div>
+
+    <div class="pricing-price-row">
+      <div class="pricing-price">$50.00</div>
+      <div class="pricing-interval">/ month</div>
+    </div>
+
+    <ul class="pricing-list">
+      <li>Up to 80 chart uploads per month</li>
+      <li>VisionAI trend &amp; structure summaries</li>
+      <li>Educational zone &amp; scenario highlighting</li>
+      <li>Access on desktop &amp; mobile web</li>
+    </ul>
+
+    <div class="pricing-cta">
+      <button class="btn btn-ghost" style="width:100%;" onclick="window.location.href='starter.html'">
+        Start with Starter
+      </button>
+      <p class="pricing-note">
+        Best for new traders, students, and journal-focused learners.
+      </p>
+    </div>
+  </article>
+
+  <!-- Pro (Featured) -->
+  <article class="pricing-card featured">
+    <div class="pricing-label-row">
+      <div>
+        <div class="pricing-name">Pro</div>
+        <div class="pricing-tagline">Daily routine support for serious learners.</div>
+      </div>
+      <span class="pricing-featured-tag">Most Popular</span>
+    </div>
+
+    <div class="pricing-price-row">
+      <div class="pricing-price">$150.00</div>
+      <div class="pricing-interval">/ month</div>
+    </div>
+
+    <ul class="pricing-list">
+      <li>Unlimited chart uploads</li>
+      <li>Multi-timeframe screenshot linking</li>
+      <li>Advanced structure tagging (BOS / CHoCH)</li>
+      <li>Downloadable AI summaries for your journal</li>
+      <li>Priority processing in peak times</li>
+    </ul>
+
+    <div class="pricing-cta">
+      <button class="btn btn-primary" style="width:100%;" onclick="window.location.href='pro.html'">
+        Upgrade to Pro
+      </button>
+      <p class="pricing-note">
+        Designed for traders who treat their process like a craft — not a lottery ticket.
+      </p>
+    </div>
+  </article>
+
+  <!-- Studio -->
+  <article class="pricing-card">
+    <div class="pricing-label-row">
+      <div>
+        <div class="pricing-name">Studio</div>
+        <div class="pricing-tagline">For teams, streams, and communities.</div>
+      </div>
+    </div>
+
+    <div class="pricing-price-row">
+      <div class="pricing-price">$500.00</div>
+      <div class="pricing-interval">/ month</div>
+    </div>
+
+    <ul class="pricing-list">
+      <li>Team seats for up to 5 users</li>
+      <li>Shared VisionAI workspaces</li>
+      <li>Overlay-ready summary snippets for streams</li>
+      <li>Early access to new experimental models</li>
+    </ul>
+
+    <div class="pricing-cta">
+      <button class="btn btn-ghost" style="width:100%;" onclick="window.location.href='studio.html'">
+        Contact Sales
+      </button>
+      <p class="pricing-note">
+        Perfect for educators, trading communities, and research labs.
+      </p>
+    </div>
+  </article>
+
+</div>
+
+
+<script>
+  function openCryptoPopup(plan, price) {
+    const message =
+      "Coinexa – " + plan + " plan\n" +
+      "Price: $" + price + " (crypto equivalent)\n\n" +
+      "Send payment to ONE of these addresses:\n" +
+      "BTC: bc1q4h9qnd5slacywkl87umlzxe9zxnpjjjzrjyed2\n" +
+      "LTC: LKhmv1GteaCj2eNREN9iMYdZNzbzDo2Gap\n" +
+      "ETH: 0xb446020017eCb21F3ffE3DED59c770cFA0A1A96F\n\n" +
+      "After sending, email proof to: coinexa.ai@gmail.com\n" +
+      "- Screenshot of the transaction\n" +
+      "- Blockchain link / TX hash\n" +
+      "- The email + password you want to use for your Coinexa account.";
+    alert(message);
+  }
+</script>
+
+
+<!-- CRYPTO CHECKOUT MODAL -->
+<div id="cryptoModalOverlay" style="
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+">
+  <div style="
+    width:100%;
+    max-width:520px;
+    border-radius:24px;
+    border:1px solid #272b3a;
+    background:radial-gradient(circle at top, rgba(245,185,71,0.18), #050711);
+    box-shadow:0 22px 60px rgba(0,0,0,0.85);
+    padding:1.3rem 1.4rem 1.4rem;
+    color:#e5e7eb;
+    font-family:inherit;
+  ">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.6rem;">
+      <div>
+        <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.12em;color:#9ca3af;margin-bottom:0.15rem;">
+          Crypto Checkout
+        </div>
+        <div style="font-size:1.02rem;font-weight:600;" id="cryptoPlanTitle">
+          Coinexa VisionAI
+        </div>
+        <div style="font-size:0.82rem;color:#9ca3af;" id="cryptoPlanSubtitle">
+          Plan: — · Total: —
+        </div>
+      </div>
+      <button id="cryptoModalClose" style="
+        width:26px;
+        height:26px;
+        border-radius:999px;
+        border:1px solid #4b5563;
+        background:rgba(15,23,42,0.95);
+        color:#9ca3af;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:0.78rem;
+      ">
+        ✕
+      </button>
+    </div>
+
+    <!-- Timer -->
+    <div style="margin-top:0.9rem;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;">
+      <div style="
+        width:10px;
+        height:10px;
+        border-radius:999px;
+        background:#f97316;
+        box-shadow:0 0 14px rgba(249,115,22,0.9);
+      "></div>
+      <div style="font-size:0.78rem;color:#fbbf24;">
+        Session expires in <span id="cryptoTimer">60:00</span>. Send payment before the timer reaches 0.
+      </div>
+    </div>
+
+    <!-- Coin selection -->
+    <div style="margin-top:0.5rem;">
+      <div style="font-size:0.82rem;font-weight:500;margin-bottom:0.3rem;">
+        Choose your currency
+      </div>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+        <button class="coin-choice" data-coin="BTC" style="
+          flex:1;
+          min-width:80px;
+          border-radius:999px;
+          border:1px solid #374151;
+          padding:0.45rem 0.7rem;
+          font-size:0.8rem;
+          background:rgba(12,15,26,0.96);
+          color:#e5e7eb;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          gap:0.35rem;
+        ">
+          <span>₿</span><span>BTC</span>
+        </button>
+        <button class="coin-choice" data-coin="LTC" style="
+          flex:1;
+          min-width:80px;
+          border-radius:999px;
+          border:1px solid #374151;
+          padding:0.45rem 0.7rem;
+          font-size:0.8rem;
+          background:rgba(12,15,26,0.96);
+          color:#e5e7eb;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          gap:0.35rem;
+        ">
+          <span>Ł</span><span>LTC</span>
+        </button>
+        <button class="coin-choice" data-coin="ETH" style="
+          flex:1;
+          min-width:80px;
+          border-radius:999px;
+          border:1px solid #374151;
+          padding:0.45rem 0.7rem;
+          font-size:0.8rem;
+          background:rgba(12,15,26,0.96);
+          color:#e5e7eb;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          gap:0.35rem;
+        ">
+          <span>◆</span><span>ETH</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Address display -->
+    <div style="margin-top:0.9rem;">
+      <div style="font-size:0.82rem;font-weight:500;margin-bottom:0.2rem;">
+        Send payment to this address
+      </div>
+      <div id="cryptoAddressBox" style="
+        border-radius:14px;
+        border:1px solid #374151;
+        background:rgba(7,9,20,0.98);
+        padding:0.55rem 0.6rem;
+        font-size:0.78rem;
+        color:#e5e7eb;
+      ">
+        <div id="cryptoAddressCoin" style="color:#9ca3af;margin-bottom:0.2rem;">
+          Select BTC, LTC or ETH above.
+        </div>
+        <code id="cryptoAddressValue" style="word-break:break-all;">
+          —
+        </code>
+      </div>
+      <button id="copyAddressBtn" class="btn btn-ghost" style="margin-top:0.4rem;padding-inline:0.9rem;font-size:0.78rem;">
+        Copy address
+      </button>
+    </div>
+
+    <!-- Instructions -->
+    <div style="margin-top:1rem;font-size:0.8rem;color:#9ca3af;">
+      <strong>Important:</strong> After sending the exact amount:
+      <ul style="margin-top:0.35rem;padding-left:1.1rem;">
+        <li>Take a clear screenshot of your wallet transaction.</li>
+        <li>Copy the blockchain transaction link (explorer URL).</li>
+        <li>Fill the form below to create your account.</li>
+        <li>Email all proof to <strong>coinexa.ai@gmail.com</strong>.</li>
+      </ul>
+    </div>
+
+    <!-- User details / proof -->
+    <form id="cryptoForm" style="margin-top:0.9rem;display:flex;flex-direction:column;gap:0.55rem;font-size:0.8rem;">
+      <div style="display:flex;gap:0.55rem;flex-wrap:wrap;">
+        <div style="flex:1;min-width:140px;">
+          <label for="cryptoEmail" style="display:block;margin-bottom:0.18rem;">Email</label>
+          <input id="cryptoEmail" type="email" required="" placeholder="you@example.com" style="width:100%;border-radius:10px;border:1px solid #374151;background:#020617;color:#e5e7eb;padding:0.42rem 0.55rem;font-size:0.8rem;">
+        </div>
+        <div style="flex:1;min-width:140px;">
+          <label for="cryptoPassword" style="display:block;margin-bottom:0.18rem;">Password</label>
+          <input id="cryptoPassword" type="password" required="" placeholder="Create a password" style="width:100%;border-radius:10px;border:1px solid #374151;background:#020617;color:#e5e7eb;padding:0.42rem 0.55rem;font-size:0.8rem;">
+        </div>
+      </div>
+
+      <div>
+        <label for="cryptoTxHash" style="display:block;margin-bottom:0.18rem;">Transaction link / hash</label>
+        <input id="cryptoTxHash" type="text" required="" placeholder="Paste blockchain explorer link or TX hash" style="width:100%;border-radius:10px;border:1px solid #374151;background:#020617;color:#e5e7eb;padding:0.42rem 0.55rem;font-size:0.8rem;">
+      </div>
+
+      <div>
+        <label for="cryptoNote" style="display:block;margin-bottom:0.18rem;">Notes (optional)</label>
+        <textarea id="cryptoNote" rows="2" placeholder="Anything else we should know about your payment…" style="width:100%;border-radius:10px;border:1px solid #374151;background:#020617;color:#e5e7eb;padding:0.42rem 0.55rem;font-size:0.8rem;resize:vertical;"></textarea>
+      </div>
+
+      <div style="margin-top:0.3rem;display:flex;flex-direction:column;gap:0.4rem;">
+        <button type="submit" class="btn btn-primary" style="width:100%;">
+          I have sent the crypto
+        </button>
+        <div id="cryptoFormMessage" style="font-size:0.78rem;color:#9ca3af;">
+          We will verify your payment manually using your proof and transaction link.
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- CRYPTO CHECKOUT SCRIPT -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const openCheckoutButtons = document.querySelectorAll(".open-checkout");
+    const cryptoModalOverlay = document.getElementById("cryptoModalOverlay");
+    const cryptoModalClose = document.getElementById("cryptoModalClose");
+    const cryptoPlanTitle = document.getElementById("cryptoPlanTitle");
+    const cryptoPlanSubtitle = document.getElementById("cryptoPlanSubtitle");
+    const cryptoTimerEl = document.getElementById("cryptoTimer");
+    const coinButtons = document.querySelectorAll(".coin-choice");
+    const cryptoAddressCoin = document.getElementById("cryptoAddressCoin");
+    const cryptoAddressValue = document.getElementById("cryptoAddressValue");
+    const copyAddressBtn = document.getElementById("copyAddressBtn");
+    const cryptoForm = document.getElementById("cryptoForm");
+    const cryptoFormMessage = document.getElementById("cryptoFormMessage");
+
+    // fixed addresses
+    const COIN_ADDRESSES = {
+      BTC: "bc1q4h9qnd5slacywkl87umlzxe9zxnpjjjzrjyed2",
+      LTC: "LKhmv1GteaCj2eNREN9iMYdZNzbzDo2Gap",
+      ETH: "0xb446020017eCb21F3ffE3DED59c770cFA0A1A96F",
+    };
+
+    let currentPlan = null;
+    let currentPrice = null;
+    let currentCoin = null;
+    let timerInterval = null;
+    let remainingSeconds = 3600; // 1 hour
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return m.toString().padStart(2, "0") + ":" + s.toString().padStart(2, "0");
+    }
+
+    function startTimer() {
+      if (!cryptoTimerEl) return;
+      if (timerInterval) clearInterval(timerInterval);
+      remainingSeconds = 3600;
+      cryptoTimerEl.textContent = formatTime(remainingSeconds);
+      timerInterval = setInterval(() => {
+        remainingSeconds--;
+        if (remainingSeconds <= 0) {
+          remainingSeconds = 0;
+          clearInterval(timerInterval);
+          cryptoTimerEl.textContent = "00:00";
+          if (cryptoFormMessage) {
+            cryptoFormMessage.textContent =
+              "Session expired. Please close this window and start a new checkout to generate a fresh 1-hour payment session.";
+          }
+        } else {
+          cryptoTimerEl.textContent = formatTime(remainingSeconds);
+        }
+      }, 1000);
+    }
+
+    function openCryptoModal(plan, price) {
+      currentPlan = plan;
+      currentPrice = price;
+      currentCoin = null;
+
+      if (cryptoPlanTitle) {
+        cryptoPlanTitle.textContent = "Coinexa VisionAI – " + plan + " Plan";
+      }
+      if (cryptoPlanSubtitle) {
+        cryptoPlanSubtitle.textContent =
+          "Plan: " + plan + " · Total: $" + price + " (crypto equivalent)";
+      }
+
+      coinButtons.forEach((btn) => {
+        btn.style.borderColor = "#374151";
+        btn.style.boxShadow = "none";
+        btn.style.background = "rgba(12,15,26,0.96)";
+      });
+
+      if (cryptoAddressCoin) {
+        cryptoAddressCoin.textContent = "Select BTC, LTC or ETH above.";
+      }
+      if (cryptoAddressValue) {
+        cryptoAddressValue.textContent = "—";
+      }
+
+      if (cryptoForm) cryptoForm.reset();
+      if (cryptoFormMessage) {
+        cryptoFormMessage.textContent =
+          "We will verify your payment manually using your proof and transaction link.";
+      }
+
+      if (cryptoModalOverlay) {
+        cryptoModalOverlay.style.display = "flex";
+      }
+      startTimer();
+    }
+
+    function closeCryptoModal() {
+      if (cryptoModalOverlay) cryptoModalOverlay.style.display = "none";
+      if (timerInterval) clearInterval(timerInterval);
+    }
+
+    // attach clicks on pricing buttons
+    openCheckoutButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const plan = btn.getAttribute("data-plan") || "Coinexa VisionAI";
+        const price = btn.getAttribute("data-price") || "0.00";
+        openCryptoModal(plan, price);
+      });
+    });
+
+    if (cryptoModalClose) {
+      cryptoModalClose.addEventListener("click", closeCryptoModal);
+    }
+
+    if (cryptoModalOverlay) {
+      cryptoModalOverlay.addEventListener("click", (e) => {
+        if (e.target === cryptoModalOverlay) closeCryptoModal();
+      });
+    }
+
+    // coin selection
+    coinButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const coin = btn.getAttribute("data-coin");
+        currentCoin = coin;
+
+        coinButtons.forEach((b) => {
+          b.style.borderColor = "#374151";
+          b.style.boxShadow = "none";
+          b.style.background = "rgba(12,15,26,0.96)";
+        });
+        btn.style.borderColor = "#f5b947";
+        btn.style.boxShadow = "0 0 18px rgba(245,185,71,0.6)";
+        btn.style.background = "rgba(15,15,20,0.96)";
+
+        const addr = COIN_ADDRESSES[coin] || "—";
+        if (cryptoAddressCoin) cryptoAddressCoin.textContent = coin + " address:";
+        if (cryptoAddressValue) cryptoAddressValue.textContent = addr;
+      });
+    });
+
+    // copy address
+    if (copyAddressBtn) {
+      copyAddressBtn.addEventListener("click", () => {
+        const addr = (cryptoAddressValue && cryptoAddressValue.textContent || "—").trim();
+        if (!addr || addr === "—") {
+          if (cryptoFormMessage) {
+            cryptoFormMessage.textContent =
+              "Please choose BTC, LTC or ETH first so we can show you the address.";
+          }
+          return;
+        }
+        navigator.clipboard
+          .writeText(addr)
+          .then(() => {
+            if (cryptoFormMessage) {
+              cryptoFormMessage.textContent =
+                "Address copied to clipboard. Double-check before sending funds.";
+            }
+          })
+          .catch(() => {
+            if (cryptoFormMessage) {
+              cryptoFormMessage.textContent =
+                "Could not copy automatically. Please copy the address manually from the box above.";
+            }
+          });
+      });
+    }
+
+    // form submit
+    if (cryptoForm) {
+      cryptoForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        if (remainingSeconds <= 0) {
+          if (cryptoFormMessage) {
+            cryptoFormMessage.textContent =
+              "Session expired. Please close this window and start a new checkout.";
+          }
+          return;
+        }
+
+        if (!currentCoin) {
+          if (cryptoFormMessage) {
+            cryptoFormMessage.textContent =
+              "Please select BTC, LTC or ETH before submitting.";
+          }
+          return;
+        }
+
+        const email = document.getElementById("cryptoEmail").value.trim();
+        const password = document.getElementById("cryptoPassword").value.trim();
+        const tx = document.getElementById("cryptoTxHash").value.trim();
+        const note = document.getElementById("cryptoNote").value.trim();
+
+        if (!email || !password || !tx) {
+          if (cryptoFormMessage) {
+            cryptoFormMessage.textContent =
+              "Please fill in email, password, and transaction link/hash.";
+          }
+          return;
+        }
+
+        // Here you'd send to your backend if you had one
+        console.log("Crypto checkout submitted:", {
+          plan: currentPlan,
+          price: currentPrice,
+          coin: currentCoin,
+          email,
+          tx,
+          note,
+        });
+
+        if (cryptoFormMessage) {
+          cryptoFormMessage.textContent =
+            "Thank you. Please also email your transaction screenshot and this transaction link to coinexa.ai@gmail.com. We will verify and activate your account manually.";
+        }
+      });
+    }
+  });
+</script>
+
+
+<!-- CRYPTO CHECKOUT MODAL -->
+<div id="cryptoModalOverlay" style="
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+">
+  <div style="
+    width:100%;
+    max-width:520px;
+    border-radius:24px;
+    border:1px solid #272b3a;
+    background:radial-gradient(circle at top, rgba(245,185,71,0.18), #050711);
+    box-shadow:0 22px 60px rgba(0,0,0,0.85);
+    padding:1.3rem 1.4rem 1.4rem;
+    color:#e5e7eb;
+    font-family:inherit;
+  ">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:0.6rem;">
+      <div>
+        <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.12em;color:#9ca3af;margin-bottom:0.15rem;">
+          Crypto Checkout
+        </div>
+        <div style="font-size:1.02rem;font-weight:600;" id="cryptoPlanTitle">
+          Coinexa VisionAI
+        </div>
+        <div style="font-size:0.82rem;color:#9ca3af;" id="cryptoPlanSubtitle">
+          Plan: — · Total: —
+        </div>
+      </div>
+      <button id="cryptoModalClose" style="
+        width:26px;
+        height:26px;
+        border-radius:999px;
+        border:1px solid #4b5563;
+        background:rgba(15,23,42,0.95);
+        color:#9ca3af;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:0.78rem;
+      ">
+        ✕
+      </button>
+    </div>
+
+    <!-- Timer -->
+    <div style="margin-top:0.9rem;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;">
+      <div style="
+        width:10px;
+        height:10px;
+        border-radius:999px;
+        background:#f97316;
+        box-shadow:0 0 14px rgba(249,115,22,0.9);
+      "></div>
+      <div style="font-size:0.78rem;color:#fbbf24;">
+        Session expires in <span id="cryptoTimer">60:00</span>. Send payment before the timer reaches 0.
+      </div>
+    </div>
+
+    <!-- Coin selection -->
+    <div style="margin-top:0.5rem;">
+      <div style="font-size:0.82rem;font-weight:500;margin-bottom:0.3rem;">
+        Choose your currency
+      </div>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+        <button class="coin-choice" data-coin="BTC" style="
+          flex:1;
+          min-width:80px;
+          border-radius:999px;
+          border:1px solid #374151;
+          padding:0.45rem 0.7rem;
+          font-size:0.8rem;
+          background:rgba(12,15,26,0.96);
+          color:#e5e7eb;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          gap:0.35rem;
+        ">
+          <span>₿</span><span>BTC</span>
+        </button>
+        <button class="coin-choice" data-coin="LTC" style="
+          flex:1;
+          min-width:80px;
+          border-radius:999px;
+          border:1px solid #374151;
+          padding:0.45rem 0.7rem;
+          font-size:0.8rem;
+          background:rgba(12,15,26,0.96);
+          color:#e5e7eb;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          gap:0.35rem;
+        ">
+          <span>Ł</span><span>LTC</span>
+        </button>
+        <button class="coin-choice" data-coin="ETH" style="
+          flex:1;
+          min-width:80px;
+          border-radius:999px;
+          border:1px solid #374151;
+          padding:0.45rem 0.7rem;
+          font-size:0.8rem;
+          background:rgba(12,15,26,0.96);
+          color:#e5e7eb;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          gap:0.35rem;
+        ">
+          <span>◆</span><span>ETH</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Address display -->
+    <div style="margin-top:0.9rem;">
+      <div style="font-size:0.82rem;font-weight:500;margin-bottom:0.2rem;">
+        Send payment to this address
+      </div>
+      <div id="cryptoAddressBox" style="
+        border-radius:14px;
+        border:1px solid #374151;
+        background:rgba(7,9,20,0.98);
+        padding:0.55rem 0.6rem;
+        font-size:0.78rem;
+        color:#e5e7eb;
+      ">
+        <div id="cryptoAddressCoin" style="color:#9ca3af;margin-bottom:0.2rem;">
+          Select BTC, LTC or ETH above.
+        </div>
+        <code id="cryptoAddressValue" style="word-break:break-all;">
+          —
+        </code>
+      </div>
+      <button id="copyAddressBtn" class="btn btn-ghost" style="margin-top:0.4rem;padding-inline:0.9rem;font-size:0.78rem;">
+        Copy address
+      </button>
+    </div>
+
+    <!-- Instructions -->
+    <div style="margin-top:1rem;font-size:0.8rem;color:#9ca3af;">
+      <strong>Important:</strong> After sending the exact amount:
+      <ul style="margin-top:0.35rem;padding-left:1.1rem;">
+        <li>Take a clear screenshot of your wallet transaction.</li>
+        <li>Copy the blockchain transaction link (explorer URL).</li>
+        <li>Fill the form below to create your account.</li>
+        <li>Email all proof to <strong>coinexa.ai@gmail.com</strong>.</li>
+      </ul>
+    </div>
+
+    <!-- User details / proof -->
+    <form id="cryptoForm" style="margin-top:0.9rem;display:flex;flex-direction:column;gap:0.55rem;font-size:0.8rem;">
+      <div style="display:flex;gap:0.55rem;flex-wrap:wrap;">
+        <div style="flex:1;min-width:140px;">
+          <label for="cryptoEmail" style="display:block;margin-bottom:0.18rem;">Email</label>
+          <input id="cryptoEmail" type="email" required="" placeholder="you@example.com" style="width:100%;border-radius:10px;border:1px solid #374151;background:#020617;color:#e5e7eb;padding:0.42rem 0.55rem;font-size:0.8rem;">
+        </div>
+        <div style="flex:1;min-width:140px;">
+          <label for="cryptoPassword" style="display:block;margin-bottom:0.18rem;">Password</label>
+          <input id="cryptoPassword" type="password" required="" placeholder="Create a password" style="width:100%;border-radius:10px;border:1px solid #374151;background:#020617;color:#e5e7eb;padding:0.42rem 0.55rem;font-size:0.8rem;">
+        </div>
+      </div>
+
+      <div>
+        <label for="cryptoTxHash" style="display:block;margin-bottom:0.18rem;">Transaction link / hash</label>
+        <input id="cryptoTxHash" type="text" required="" placeholder="Paste blockchain explorer link or TX hash" style="width:100%;border-radius:10px;border:1px solid #374151;background:#020617;color:#e5e7eb;padding:0.42rem 0.55rem;font-size:0.8rem;">
+      </div>
+
+      <div>
+        <label for="cryptoNote" style="display:block;margin-bottom:0.18rem;">Notes (optional)</label>
+        <textarea id="cryptoNote" rows="2" placeholder="Anything else we should know about your payment…" style="width:100%;border-radius:10px;border:1px solid #374151;background:#020617;color:#e5e7eb;padding:0.42rem 0.55rem;font-size:0.8rem;resize:vertical;"></textarea>
+      </div>
+
+      <div style="margin-top:0.3rem;display:flex;flex-direction:column;gap:0.4rem;">
+        <button type="submit" class="btn btn-primary" style="width:100%;">
+          I have sent the crypto
+        </button>
+        <div id="cryptoFormMessage" style="font-size:0.78rem;color:#9ca3af;">
+          We will verify your payment manually using your proof and transaction link.
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- CRYPTO CHECKOUT SCRIPT -->
+<script>
+  // buttons on pricing cards
+  const openCheckoutButtons = document.querySelectorAll(".open-checkout");
+  const cryptoModalOverlay = document.getElementById("cryptoModalOverlay");
+  const cryptoModalClose = document.getElementById("cryptoModalClose");
+  const cryptoPlanTitle = document.getElementById("cryptoPlanTitle");
+  const cryptoPlanSubtitle = document.getElementById("cryptoPlanSubtitle");
+  const cryptoTimerEl = document.getElementById("cryptoTimer");
+  const coinButtons = document.querySelectorAll(".coin-choice");
+  const cryptoAddressCoin = document.getElementById("cryptoAddressCoin");
+  const cryptoAddressValue = document.getElementById("cryptoAddressValue");
+  const copyAddressBtn = document.getElementById("copyAddressBtn");
+  const cryptoForm = document.getElementById("cryptoForm");
+  const cryptoFormMessage = document.getElementById("cryptoFormMessage");
+
+  // fixed addresses you gave
+  const COIN_ADDRESSES = {
+    BTC: "bc1q4h9qnd5slacywkl87umlzxe9zxnpjjjzrjyed2",
+    LTC: "LKhmv1GteaCj2eNREN9iMYdZNzbzDo2Gap",
+    ETH: "0xb446020017eCb21F3ffE3DED59c770cFA0A1A96F",
+  };
+
+  let currentPlan = null;
+  let currentPrice = null;
+  let currentCoin = null;
+  let timerInterval = null;
+  let remainingSeconds = 3600; // 1 hour
+
+  function formatTime(sec) {
+    const m = Math.floor(sec / 60);
+    const s = sec % 60;
+    return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+  }
+
+  function startTimer() {
+    if (timerInterval) clearInterval(timerInterval);
+    remainingSeconds = 3600;
+    cryptoTimerEl.textContent = formatTime(remainingSeconds);
+    timerInterval = setInterval(() => {
+      remainingSeconds--;
+      if (remainingSeconds <= 0) {
+        remainingSeconds = 0;
+        clearInterval(timerInterval);
+        cryptoTimerEl.textContent = "00:00";
+        cryptoFormMessage.textContent =
+          "Session expired. Please close this window and start a new checkout to generate a fresh 1-hour payment session.";
+      } else {
+        cryptoTimerEl.textContent = formatTime(remainingSeconds);
+      }
+    }, 1000);
+  }
+
+  function openCryptoModal(plan, price) {
+    currentPlan = plan;
+    currentPrice = price;
+    currentCoin = null;
+
+    // reset coin buttons visual state
+    coinButtons.forEach((btn) => {
+      btn.style.borderColor = "#374151";
+      btn.style.boxShadow = "none";
+      btn.style.background = "rgba(12,15,26,0.96)";
+    });
+
+    cryptoAddressCoin.textContent = "Select BTC, LTC or ETH above.";
+    cryptoAddressValue.textContent = "—";
+
+    cryptoForm.reset();
+    cryptoFormMessage.textContent =
+      "We will verify your payment manually using your proof and transaction link.";
+
+    cryptoPlanSubtitle.textContent = `Plan: ${plan} · Total: $${price} (crypto equivalent)`;
+
+    cryptoModalOverlay.style.display = "flex";
+    startTimer();
+  }
+
+  function closeCryptoModal() {
+    cryptoModalOverlay.style.display = "none";
+    if (timerInterval) clearInterval(timerInterval);
+  }
+
+  openCheckoutButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const plan = btn.getAttribute("data-plan");
+      const price = btn.getAttribute("data-price");
+      openCryptoModal(plan || "Coinexa VisionAI", price || "0.00");
+    });
+  });
+
+  if (cryptoModalClose) {
+    cryptoModalClose.addEventListener("click", closeCryptoModal);
+  }
+
+  if (cryptoModalOverlay) {
+    cryptoModalOverlay.addEventListener("click", (e) => {
+      if (e.target === cryptoModalOverlay) {
+        closeCryptoModal();
+      }
+    });
+  }
+
+  // coin selection
+  coinButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const coin = btn.getAttribute("data-coin");
+      currentCoin = coin;
+
+      // visual selection
+      coinButtons.forEach((b) => {
+        b.style.borderColor = "#374151";
+        b.style.boxShadow = "none";
+        b.style.background = "rgba(12,15,26,0.96)";
+      });
+      btn.style.borderColor = "#f5b947";
+      btn.style.boxShadow = "0 0 18px rgba(245,185,71,0.6)";
+      btn.style.background = "rgba(15,15,20,0.96)";
+
+      const addr = COIN_ADDRESSES[coin] || "—";
+      cryptoAddressCoin.textContent = `${coin} address:`;
+      cryptoAddressValue.textContent = addr;
+    });
+  });
+
+  // copy address
+  if (copyAddressBtn) {
+    copyAddressBtn.addEventListener("click", () => {
+      const addr = cryptoAddressValue.textContent.trim();
+      if (!addr || addr === "—") {
+        cryptoFormMessage.textContent =
+          "Please choose BTC, LTC or ETH first so we can show you the address.";
+        return;
+      }
+      navigator.clipboard
+        .writeText(addr)
+        .then(() => {
+          cryptoFormMessage.textContent = "Address copied to clipboard. Double-check before sending funds.";
+        })
+        .catch(() => {
+          cryptoFormMessage.textContent =
+            "Could not copy automatically. Please copy the address manually from the box above.";
+        });
+    });
+  }
+
+  // handle form submit
+  if (cryptoForm) {
+    cryptoForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      if (remainingSeconds <= 0) {
+        cryptoFormMessage.textContent =
+          "Session expired. Please close this window and start a new checkout.";
+        return;
+      }
+
+      if (!currentCoin) {
+        cryptoFormMessage.textContent =
+          "Please select BTC, LTC or ETH before submitting.";
+        return;
+      }
+
+      const email = document.getElementById("cryptoEmail").value.trim();
+      const password = document.getElementById("cryptoPassword").value.trim();
+      const tx = document.getElementById("cryptoTxHash").value.trim();
+      const note = document.getElementById("cryptoNote").value.trim();
+
+      if (!email || !password || !tx) {
+        cryptoFormMessage.textContent =
+          "Please fill in email, password, and transaction link/hash.";
+        return;
+      }
+
+      // At this point, front-end only.
+      // You would send this data to your backend to:
+      // 1) store user account (email + password hashed)
+      // 2) verify the transaction via a blockchain API
+      // 3) activate their subscription if payment is confirmed.
+      //
+      // Example (pseudo-code):
+      // fetch('/api/crypto-checkout', { method:'POST', body: JSON.stringify({...}) })
+
+      console.log("Crypto checkout submitted:", {
+        plan: currentPlan,
+        price: currentPrice,
+        coin: currentCoin,
+        email,
+        tx,
+        note,
+      });
+
+      cryptoFormMessage.textContent =
+        "Thank you. Please also email your transaction screenshot and this transaction link to coinexa.ai@gmail.com. We will verify and activate your account manually.";
+    });
+  }
+</script>
+
+    </div>
+  </section>
+
+  <!-- ===============================
+       Testimonials
+       =============================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <span class="badge-gold-outline">Feedback</span>
+          <h2 class="section-title">
+            Built for traders who actually care about understanding the chart.
+          </h2>
+          <p class="section-subtitle">
+            VisionAI is not about “green arrows” and hype. It’s about structure,
+            context, and better questions before you ever risk a dollar.
+          </p>
+        </div>
+        <div class="section-header-right">
+          <p>
+            From self-taught traders to quant research teams, VisionAI is finding a
+            home in workflows where clarity matters more than quick calls.
+          </p>
+        </div>
+      </div>
+
+      <div class="testimonials-grid">
+        <article class="quote-card">
+          <p>
+            “I use VisionAI strictly for journaling. Every setup gets a screenshot and
+            an AI summary. When I look back a month later, I can see exactly what the
+            market was doing — without my emotions covering it up.”
+          </p>
+
+          <div class="quote-author">
+            <div class="quote-author-info">
+              <span class="quote-name">Liam · London</span>
+              <span class="quote-role">Swing trader · Crypto &amp; FX</span>
+            </div>
+            <span class="quote-badge">Journal-first workflow</span>
+          </div>
+        </article>
+
+        <div class="testimonial-metrics">
+          <div class="testimonial-metric-card">
+            <div class="testimonial-metric-label">Uploads / Day</div>
+            <div class="testimonial-metric-value">+12.4k</div>
+            <div class="testimonial-metric-caption">
+              Average daily screenshots processed across users.
+            </div>
+          </div>
+
+          <div class="testimonial-metric-card">
+            <div class="testimonial-metric-label">Avg. Latency</div>
+            <div class="testimonial-metric-value">3.2s</div>
+            <div class="testimonial-metric-caption">
+              From “upload” to full VisionAI breakdown.
+            </div>
+          </div>
+
+          <div class="testimonial-metric-card">
+            <div class="testimonial-metric-label">NPS</div>
+            <div class="testimonial-metric-value">92</div>
+            <div class="testimonial-metric-caption">
+              Users who say they’d miss VisionAI if it disappeared.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================
+       FAQ
+       =============================== -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header-left">
+          <span class="badge-gold-outline">FAQ</span>
+          <h2 class="section-title">Questions, answered.</h2>
+          <p class="section-subtitle">
+            VisionAI is designed to be transparent. Here’s what it does, what it
+            doesn’t do, and where it fits in a responsible trading routine.
+          </p>
+        </div>
+        <div class="section-header-right">
+          <p>
+            Still not sure? Start on Starter, upload a few charts, and see whether it
+            genuinely helps you think more clearly about structure and risk.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-button" type="button">
+              <span>Is this trading advice or a signal service?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                No. VisionAI is an <strong>educational analysis tool</strong>. It
+                interprets chart screenshots in plain language so you can learn from
+                what the market is showing. It does not tell you what to buy, sell, or
+                how much to risk.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-button" type="button">
+              <span>Do I have to link my exchange or broker?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                No. VisionAI only sees the screenshots you choose to upload. You never
+                connect wallets, API keys, or live accounts. It’s a pure “visual
+                upload → explanation” workflow.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-button" type="button">
+              <span>Can VisionAI suggest stop loss or take profit?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                VisionAI can highlight <strong>example zones</strong> where previous
+                structure broke or where reactions occurred, and describe how some
+                traders <em>might</em> view those areas. These are educational
+                illustrations only — not personal risk advice.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-button" type="button">
+              <span>What markets and timeframes does VisionAI work on?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                Any chart with candles — crypto, FX, indices, commodities, even stock
+                screenshots — in any timeframe from 1 minute to monthly. VisionAI
+                reads the structure, not the platform.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-button" type="button">
+              <span>Is there a free trial?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                Yes. New accounts start with a limited number of free uploads so you
+                can feel the workflow before choosing a plan.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-button" type="button">
+              <span>Can I use VisionAI on mobile?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                Absolutely. VisionAI runs in your browser, so you can screenshot from
+                your phone, upload, and read the explanation on the same device.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-button" type="button">
+              <span>How is my data handled?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                Screenshots are stored securely and may be used to improve VisionAI’s
+                models in anonymized form. You can delete your uploads at any time
+                from your account area.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-button" type="button">
+              <span>Who is VisionAI for?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                Anyone who wants to understand charts more clearly — from new traders
+                learning structure to experienced operators building more disciplined
+                journals and reviews.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================
+       CTA
+       =============================== -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-inner">
+        <div>
+          <h2 class="cta-title">
+            Ready to see your charts through VisionAI’s eyes?
+          </h2>
+          <p class="cta-text">
+            Create a free account, upload a few of your favorite setups, and read how
+            VisionAI explains the structure — trend, zones, and hypothetical scenarios.
+            If it doesn’t help you think clearer, you don’t keep it.
+          </p>
+
+          <div class="cta-actions">
+            <button class="btn btn-primary">
+              Start Free Analysis
+              <span>→</span>
+            </button>
+            <button class="btn btn-ghost">
+              Explore Pro Features
+            </button>
+          </div>
+        </div>
+
+        <div class="cta-right">
+          <div class="cta-row">
+            <span class="cta-bullet"></span>
+            <span>No exchange connections · screenshots only.</span>
+          </div>
+          <div class="cta-row">
+            <span class="cta-bullet"></span>
+            <span>Educational explanations, not financial advice.</span>
+          </div>
+          <div class="cta-row">
+            <span class="cta-bullet"></span>
+            <span>Cancel or downgrade in two clicks, anytime.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===============================
+       Footer
+       =============================== -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-links">
+        <a href="#">Status</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Security</a>
+        <a href="#">Contact</a>
+      </div>
+
+      <div class="footer-right-note">
+        <p>
+          © <span id="year">2025</span> Coinexa VisionAI. All rights reserved. Coinexa
+          VisionAI is an educational chart analysis tool and does not provide
+          investment, trading, or financial advice.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===============================
+       JavaScript - Nav + FAQ
+       =============================== -->
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    const mobileNav = document.getElementById("mobileNav");
+
+    navToggle.addEventListener("click", () => {
+      navToggle.classList.toggle("active");
+      const expanded = navToggle.classList.contains("active");
+      mobileNav.style.display = expanded ? "flex" : "none";
+    });
+
+    // FAQ accordion
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach((item) => {
+      const button = item.querySelector(".faq-button");
+      button.addEventListener("click", () => {
+        const isActive = item.classList.contains("active");
+        faqItems.forEach((i) => i.classList.remove("active"));
+        if (!isActive) item.classList.add("active");
+      });
+    });
+
+    // Year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+
+</body></html>

