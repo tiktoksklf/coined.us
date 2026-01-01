@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply Now</title>
+<style>
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Full page background */
+body, html {
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+  color: #f5c518;
+}
+
+/* Center container */
+.apply-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px;
+}
+
+/* Form card */
+.apply-form {
+  width: 100%;
+  max-width: 850px;
+  background: #121212;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.5);
+}
+
+.apply-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 36px;
+  color: #f5c518;
+  letter-spacing: 1px;
+}
+
+/* Form layout */
+.form-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.apply-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #f5c518;
+}
+
+.apply-form input,
+.apply-form select,
+.apply-form textarea {
+  padding: 14px;
+  border: 1px solid #f5c518;
+  border-radius: 8px;
+  background: #1e1e1e;
+  color: #f5c518;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.apply-form input:focus,
+.apply-form select:focus,
+.apply-form textarea:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 8px #d4af37;
+}
+
+.apply-form input::placeholder,
+.apply-form textarea::placeholder {
+  color: #d4af37aa;
+}
+
+.apply-form select {
+  cursor: pointer;
+}
+
+.apply-form textarea {
+  resize: vertical;
+}
+
+/* Button */
+.apply-form button {
+  margin-top: 25px;
+  width: 100%;
+  padding: 16px;
+  font-size: 20px;
+  background: #f5c518;
+  color: #121212;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.apply-form button:hover {
+  background: #d4af37;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .form-row {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+
+<section class="apply-section">
+  <form action="https://formspree.io/f/xqeaakdn" method="POST" class="apply-form">
+
+    <h2>Apply Now</h2>
+
+    <!-- Name & Age -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="John Doe" required>
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" placeholder="25" min="18" required>
+      </div>
+    </div>
+
+    <!-- DOB & Payment -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" required>
+      </div>
+      <div class="form-group">
+        <label for="payment">Payment Type</label>
+        <select id="payment" name="payment" required>
+          <option value="">Select Payment Method</option>
+          <option value="BTC">BTC</option>
+          <option value="ETH">ETH</option>
+          <option value="LTC">LTC</option>
+          <option value="USDT">USDT</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Email & Phone -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890" required>
+      </div>
+    </div>
+
+    <!-- Meme coins & trading earnings -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="memeEarnings">Meme Coins Earnings (Past 6 Months)</label>
+        <input type="text" id="memeEarnings" name="memeEarnings" placeholder="$0" required>
+      </div>
+      <div class="form-group">
+        <label for="tradingEarnings">Trading Earnings (This Month)</label>
+        <input type="text" id="tradingEarnings" name="tradingEarnings" placeholder="$0" required>
+      </div>
+    </div>
+
+    <!-- Plan Selection -->
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="plan">Select Plan</label>
+      <select id="plan" name="plan" required>
+        <option value="">Select Your Plan</option>
+        <option value="Coinexa VIP ($500/year)">Coinexa VIP ($500/year)</option>
+        <option value="Coinexa Standard ($195/year)">Coinexa Standard ($195/year)</option>
+      </select>
+    </div>
+
+    <!-- Cover Letter -->
+    <label for="message">Cover Letter / Message (optional)</label>
+    <textarea id="message" name="message" rows="5" placeholder="Tell us why you should be accepted..."></textarea>
+
+    <button type="submit">Submit Application</button>
+  </form>
+</section>
+
+</body>
+</html>
